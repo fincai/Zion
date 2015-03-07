@@ -1,0 +1,116 @@
+{% extends 'nav.html' %}
+{% block page_header %}
+<div class="user-profile user-profile-top">
+  <div class="page-header header-primary user-profile-header">
+    <div class="container">
+      <div class="header-row">
+        <img src="/static/avatars/{{ profile_user.avatar_image }}" class="header-avatar">
+        <div class="header-side">
+          <h1>{{ profile_user.username }} <small>{{ profile_user.signature }}</small></h1>
+          <ul class="nav nav-tabs header-tabs">
+            
+            <li class="active">
+              <a href="/user/{{ profile_user.id }}/">Articles</a>
+            </li>
+            
+            <li>
+              <a href="/user/{{ profile_user.id }}/comments/">Comments</a>
+            </li>
+            
+            <li>
+              <a href="/user/{{ profile_user.id }}/follows/">Follows</a>
+            </li>
+            
+            <li>
+              <a href="/user/{{ profile_user.id }}/followers/">Followers</a>
+            </li>
+            
+            <li>
+              <a href="/users/fengyucai-324/details/">Profile Details</a>
+            </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
+
+
+
+{% block content %}
+<div class="stat-header">
+  <div class="help-text">
+    Graph presents user's posting activity from last 100 days.
+  </div>
+  <div id="user-graph"></div>
+  <h2>{{ profile_user.username }} has {{ profile_user.articles }} articles</h2>
+</div>
+
+
+<div class="content-list user-posts">
+  
+{% for article in article_list %}
+  <div class="media">
+    <a href="/user/{{ article.author.id }}/" class="pull-left">
+      <img class="media-object" src="/static/avatars/60_{{ article.author.avatar_image }}">
+    </a>
+    <div class="media-body">
+      <a href="/forum/{{ article.forum.id }}/article/{{ article.id }}/" class="post-preview">{{ article.title }}</a>
+      <div class="media-footer"> Posted in <a href="/forum/{{ article.forum.id }}/">{{ article.forum.name }}</a> {{ article.post_date }}</div>
+    </div>
+  </div>
+  <hr>
+{% endfor %}
+  
+  
+</div>
+
+{% endblock %}
+
+{% block forumcss %}  
+	 <script type="text/javascript">
+      $('.form-destroy-user').submit(function() {
+        var decision = confirm("Are you sure you want to destroy this member's account? This action is not reversible!");
+        return decision;
+      });
+    </script>
+
+
+    <script src="/static/cranefly/js/d3.min.js"></script>
+    <script type="text/javascript">
+      var data = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1];
+      
+      var max = 1;
+      
+
+      var barWidth = 8;
+      var width = (barWidth + 2) * data.length;
+      var height = 40;
+
+      // add the canvas to the DOM
+      var barDemo = d3.select("#user-graph")
+        .append("svg")
+        .attr("width", "100%")
+        .attr("height", 40)
+        .attr("preserveAspectRatio", 'none')
+        .attr("viewBox", "0 0 " + width + " " + height);
+
+      barDemo.selectAll("rect")
+        .data(data)
+        .enter()
+        .append("rect")
+        .attr("shape-rendering", 'crispEdges')
+        .attr("x", function(datum, index) { return (2 + barWidth) * index; })
+        .attr("y", function(datum) { return height - ((datum / max) * height) - 2; })
+        .attr("height", function(datum) { return ((datum / max) * (height)) + 2; })
+        .attr("width", barWidth)
+        .attr("fill", "#DDD");
+
+    </script>
+
+{% endblock %}
+
+
+

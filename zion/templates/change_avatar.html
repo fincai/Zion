@@ -1,0 +1,47 @@
+{% extends 'nav.html' %}
+{% block content %}
+<div class="row usercp">
+  <div class="span3">
+
+    <ul class="nav nav-pills usercp-tabs">
+      <li class="nav-header">Your Control Panel</li>
+      
+      <li><a href="/usercp/">Forum Options</a></li>
+      
+      <li class="active"><a href="/user/chavatar/">Change Avatar</a></li>
+      
+      <li><a href="/usercp/credentials/">Change E-mail or Password</a></li>
+      
+      <li><a href="/usercp/username/">Change Username</a></li>
+      
+    </ul>
+
+  </div>
+  <div class="span9 usercp-action">
+
+    
+<div class="form-container">
+  
+
+  <div class="media usercp-avatar-menu">
+    <span class="pull-left">
+      <img class="media-object" src="/static/avatars/{{ user.avatar_image }}">
+    </span>
+    <div class="media-body">
+      <div class="form-header">
+        <h1>Change Avatar</h1>
+      </div>
+      <ul class="unstyled">
+        
+        <li><a href="/usercp/avatar/gallery/" class="btn btn-link"><i class="icon-th"></i> Pick Avatar from Gallery</a></li>
+        <li><a href="/user/chavatar/upload/" class="btn btn-link"><i class="icon-picture"></i> Upload Avatar</a></li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+
+  </div>
+</div>
+{% endblock %}

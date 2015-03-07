@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en_US">
+  <head>
+    <meta charset="utf-8">
+    <title>Welcome to Zion</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Zion is fully-featured internet forum application for creative writing">
+    <link href="{{ STATIC_URL }}cranefly/css/cranefly.css" rel="stylesheet">
+    <!--[if IE 7]>
+    <link rel="stylesheet" href="{{ STATIC_URL }}cranefly/css/font-awesome-ie7.min.css">
+    <![endif]-->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ STATIC_URL }}site-logo.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ STATIC_URL }}site-logo.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ STATIC_URL }}site-logo-72.png">
+    <link rel="apple-touch-icon-precomposed" href="{{ STATIC_URL }}site-logo-57.png">
+    <link rel="shortcut icon" href="{{ STATIC_URL }}shortcut-icon.png">
+    <script src="{{ STATIC_URL }}cranefly/js/jquery-1.7.2.min.js"></script>
+    <script src="{{ STATIC_URL }}cranefly/js/bootstrap.min.js"></script>
+
+
+    <style>
+    	
+    </style>
+  </head>
+  <body itemscope itemtype="http://schema.org/WebPage">
+  <script type="text/javascript">
+	
+  </script>
+
+<div id="ajax-loader" class="progress progress-striped active">
+  <div class="bar" style="width: 100%;"></div>
+</div>
+<div id="wrap">
+  <div class="navbar navbar-header navbar-static-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <a href="/" class="brand">Zion</a>
+        
+        <form action="/search/quick/" method="post" class="navbar-form pull-left">
+          {% csrf_token %}
+          <div class="navbar-search-form">
+            <div id="navbar-search" class="navbar-search-border">
+              <div class="navbar-search-text">
+                <i class="icon-search"></i>
+                <input type="text" id="search-field" name="search_query" placeholder="Search...">
+              </div>
+              <div class="extra">
+                <div class="extra-form">
+                  <div class="control">
+                    <label>Search in:</label>
+                    <select name="search_in">
+                      <option value="forums" selected="selected">Forums</option>
+                    </select>
+                  </div>
+                  <div class="control">
+                    <label>Author name:</label>
+                    <input type="text" name="search_author" placeholder="User name...">
+                  </div>
+                  <div class="control">
+                    <label class="checkbox">
+                      <input name="search_thread_titles" type="checkbox"> Search only in threads titles
+                    </label>
+                  </div>
+                </div>
+                <div class="form-actions">
+                  <button type="submit" class="btn btn-primary"><i class="icon-search"></i> Search</button>
+                  <a href="/search/">Advanced Search</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+        
+        <ul class="nav navbar-blocks pull-left">
+          <li><a href="/" title="Forum Home" class="tooltip-bottom"><i class="icon-th-list"></i></a></li>
+          
+          <li><a href="/popular/" title="Popular Threads" class="hot tooltip-bottom"><i class="icon-fire"></i></a></li>
+          <li><a href="/new/" title="New Threads" class="fresh tooltip-bottom"><i class="icon-leaf"></i></a></li>
+          
+          <li><a href="/search/" title="Search Community" class="tooltip-bottom"><i class="icon-search"></i></a></li>
+          
+          <li><a href="/users/" title="Browse Users" class="tooltip-bottom"><i class="icon-group"></i></a></li>
+          <li><a href="/tos/" title="Forum Rules" class="tooltip-bottom"><i class="icon-certificate"></i></a></li>
+          
+        </ul>
+        
+        {% block navright %}
+        {% endblock %}
+        
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="midman">
+    <div class="midman-padding">
+      <div class="midman-arrow"></div>
+      <div class="loaded-content"></div>
+      <div class="ajax-error"><i class="icon-remove"></i></div>
+    </div>
+  </div>
+  {% block page_header %}{% endblock %}
+  
+  <div class="container container-primary">
+  
+  {% block content %}{% endblock %}
+
+  </div>
+  
+
+</div><!--/#wrap -->
+
+<footer>
+  <div class="container">
+    <ul class="breadcrumb">
+        {% block current_path %}{% endblock %}
+    </ul>
+    <hr>
+  </div>
+</footer>
+
+    
+    <script type="text/javascript">
+      var l_img_broken_msg = "Image could not be loaded.";
+      var l_play_media_msg = "Click to play media";
+      var l_play_media_author = "uploaded by {author}";
+    </script>
+  	<script src="{{ STATIC_URL }}cranefly/js/cranefly.js"></script>
+  	
+  	{% block forumcss %}
+  	{% endblock %}
+  
+  	
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+         _gaq.push(['_setAccount', 'UA-36854523-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+         var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+         ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+</script>
+  </body>
+</html>

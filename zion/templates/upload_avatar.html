@@ -1,0 +1,51 @@
+{% extends 'nav.html' %}
+{% block content %}
+<div class="row usercp">
+  <div class="span3">
+
+    <ul class="nav nav-pills usercp-tabs">
+      <li class="nav-header">Your Control Panel</li>
+      <li><a href="/usercp/">Forum Options</a></li>
+      <li class="active"><a href="/user/chavatar/">Change Avatar</a></li>
+      <li><a href="/usercp/credentials/">Change E-mail or Password</a></li>
+      <li><a href="/usercp/username/">Change Username</a></li>
+    </ul>
+
+  </div>
+  <div class="span9 usercp-action">
+    
+<div class="form-container">
+
+  <div class="form-header">
+    <h1>Upload Avatar <small>Change your Avatar</h1>
+  </div>
+
+  <form action="/user/chavatar/upload/" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% load widget_tweaks %}
+
+    <div id="avatar_upload-control-group" class="control-group">
+    <label class="control-label" for="id_avatar_upload">Upload Image File:</label>
+    <div class="controls">
+        {% render_field form.avatar_upload class="span9" %}      
+    <p class="help-block">Select image file on your computer you wish to use as your avatar</p>
+    {% for error in form.avatar_upload.errors %}
+        <p class="help-block" style="font-weight:bold; color:red">{{ error }}</p>
+    {% endfor %}
+    </div>
+  </div>
+    <div class="form-actions">
+      <button name="save" type="submit" class="btn btn-primary">Upload Avatar</button>
+      <a href="/user/chavatar/" class="btn">Cancel</a>
+    </div>
+  </form>
+  
+</div>
+
+
+  </div>
+</div>
+{% endblock %}
+{% block forumcss %}
+
+{% endblock %}

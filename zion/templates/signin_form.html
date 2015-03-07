@@ -1,0 +1,67 @@
+{% extends 'nav.html' %}
+
+{% block content %}
+<div class="row">
+  <div class="span6 offset3">
+    <div class="form-container container-horizontal">
+      <div class="form-header"> <h1>Sign In to Your Account</h1> </div>
+
+      <form class="form-horizontal" action="/signin/" method="post">
+        <div class="form-fields">
+		  {% csrf_token %}  
+		  {% load widget_tweaks %}
+          <div id="user_email-control-group" class="control-group">
+    <label class="control-label" for="id_user_email">Your email:</label>
+    <div class="controls">
+         {% render_field form.user_email placeholder="Enter your e-mail" class+="span4" %}
+         {% for error in form.user_email.errors %}
+            <p class="help-block" style="font-weight:bold; color:red">{{ error }}</p>
+         {% endfor %}
+    </div>
+  </div>
+          <div id="user_password-control-group" class="control-group">
+    <label class="control-label" for="id_user_password">Your password:</label>
+    <div class="controls">
+       {% render_field form.user_password placeholder="Enter your password" class+="span4" maxlength="255" %}
+       {% for error in form.user_password.errors %}
+            <p class="help-block" style="font-weight:bold; color:red">{{ error }}</p>
+       {% endfor %}
+    </div>
+  </div>
+          
+    <div id="user_remember_me-control-group" class="control-group">
+    <label class="control-label" for="id_user_remember_me">Stay signed in:</label>
+    <div class="controls">
+        <label class="checkbox">
+          {{ form.user_remember_me }}
+          Sign me in automatically next time
+        </label>
+        
+      
+      
+    </div>
+  </div>
+          
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">Sign In</button>
+          <div class="signin-help">
+
+            <h2>Problems Signing In?</h2>
+            <ul class="unstyled">
+              <li><a href="/reset-password/"><i class="icon-refresh"></i> I don't remember my password</a></li>
+              <li><a href="/activate/request/"><i class="icon-envelope"></i> I haven't received activation e-mail</a></li>
+              
+              <li><a href="/register/"><i class="icon-edit"></i> I don't have account</a></li>
+              
+            </ul>
+
+          </div>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+</div><!--/#wrap -->
+{% endblock %}

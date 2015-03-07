@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block navright %}
+{% if user.is_authenticated %}
+        <ul id="fancy-user-nav" class="nav navbar-blocks navbar-compact pull-right">
+          
+          <li class="user-profile dropdown">
+            <a href="/users/{{ user.username }}/" class="dropdown-toggle" data-toggle="dropdown"><div>{{ user.username }} <img src="/static/avatars/40_{{ user.avatar_image }}" alt=""><span class="caret-border"><i class="icon-caret-down"></i></span></div></a>
+            <ul class="dropdown-menu">
+              <li><a href="/user/{{ user.id }}/"><i class="icon-user"></i> Your profile</a></li>
+              <li><a href="/user/chavatar/"><i class="icon-cog"></i> Change options</a></li>
+              <li role="presentation" class="divider"></li>
+              
+              <li><a href="/alerts/"><i class="icon-asterisk"></i> Notifications</a></li>
+              
+              <li><a href="/private-threads/"><i class="icon-inbox"></i> Private Threads</a></li>
+              
+              <li><a href="/news/"><i class="icon-signal"></i> News Feed</a></li>
+              <li><a href="/watched-threads/"><i class="icon-bookmark"></i> Watched Threads</a></li>
+              
+              <li role="presentation" class="divider"></li>
+              <li><form action="/signout/" method="post">{% csrf_token %}<button type="submit" class="btn btn-link danger"><i class="icon-off"></i> Sign out</button></form></li>
+            </ul>
+          </li>
+        </ul>
+{% else %}
+	<ul class="nav navbar-user-nav pull-right">
+          <li><a href="/signin/" title="Sign In to Your Account" class="tooltip-bottom btn btn-danger">Sign In</a></li>
+          <li><a href="/register/" title="Register new account" class="tooltip-bottom btn btn-inverse">Register</a></li>
+    </ul>
+{% endif %}
+{% endblock %}

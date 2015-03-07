@@ -1,0 +1,442 @@
+{% extends 'nav.html' %}
+{% block content %}
+	<div class="row">
+  <div class="span8">
+    <div class="index-forums-list">
+      
+
+      
+      
+      <div id="project-meta" class="index-category index-category-important">
+        <div class="header">
+          <h2>Topic1</h2>
+        </div>
+        {% for forum in topic1_forumlist %}
+        <div class="forum">
+          <div class="forum-icon">
+            <i class="icon-comment-alt"></i>
+          </div>
+          <div id="forum-{{ forum.id }}" class="forum-main">
+            <h3 class="forum-title"><a href="/forum/{{ forum.id }}/" >{{ forum.name }}</a></h3>
+            <div class="forum-details">
+              <div class="thread-name">
+                <a href="/thread/misago-forums-are-now-hosted-on-digitalocean-346/new/" class="tooltip-right" title="Misago forums are now hosted on DigitalOcean!">{{ forum.description }}</a>
+              </div>
+              <div class="muted"><a href="/users/fengyucai-324/" class="last-poster">fengyucai</a> - Monday, 11:32 a.m.</div>
+            </div>
+            
+            
+            <div class="hide forum-meta">
+              <p class="forum-description">{{ forum.description }}</p>
+              <div class="forum-stats">
+                <span>Comments: <strong>42</strong></span>
+                Articles: <strong>{{ forum.articles }}</strong>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        {% endfor %}
+        
+        
+        <div class="forum last">
+          <div class="forum-icon forum-icon-redirect">
+            <i class="icon-link"></i>
+          </div>
+          <div id="forum-10" class="forum-main">
+            <h3 class="forum-title"><a href="https://fengyucai.github.io">Zion @ GitHub.com</a></h3>
+            
+            <div class="forum-details">
+              <div class="thread-name">
+                <a href="https://fengyucai.github.io">https://fengyucai.github.io</a>
+              </div>
+              <div class="muted"><span class="last-poster">2,525</span> clicks</div>
+            </div>
+            
+            
+            <div class="hide forum-meta">
+              <p class="forum-description">Visit project&#39;s GitHub page where development takes place.</p>
+              <div class="forum-stats">
+                
+                Clicks: <strong>2,525</strong>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      
+      
+      <div id="misago" class="index-category index-category-important">
+        <div class="header">
+          <h2>Topic2</h2>
+        </div>
+        {% for forum in topic2_forumlist %}
+      	  {% if not forloop.last %}
+        <div class="forum">
+          <div class="forum-icon">
+            <i class="icon-comment-alt"></i>
+          </div>
+          <div id="forum-{{ forum.id }}" class="forum-main">
+            <h3 class="forum-title"><a href="/forum/{{ forum.id }}/">{{ forum.name }}</a></h3>
+            <div class="forum-details">
+              <div class="thread-name">
+                  <a href="/thread/update-notification-on-acp-337/new/">{{ forum.description }}</a>
+              </div>
+              <div class="muted"><a href="/users/rafalp-1/" class="last-poster">rafalp</a> - July 21, 2014</div>
+            </div>
+            
+            <div class="hide forum-meta">
+              <p class="forum-description">{{ forum.description }}</p>
+              <div class="forum-stats">
+                
+                <span>Comments: <strong>42</strong></span>
+                Articles: <strong>{{ forum.articles }}</strong>
+                
+              </div>
+            </div>
+
+          </div>
+        </div>
+        	{% else %}
+          <div class="forum last">
+          <div class="forum-icon">
+            <i class="icon-comment-alt"></i>
+          </div>
+          <div id="forum-{{ forum.id }}" class="forum-main">
+            <h3 class="forum-title"><a href="/forum/{{ forum.id }}/">{{ forum.name }}</a></h3>
+            <div class="forum-details">
+              <div class="thread-name">
+                <a href="/thread/how-to-misago-on-localhost-in-5-minutes-updated-19/new/" class="tooltip-top" title="How to: Misago on localhost in 5 minutes. (Updated)">How to: Misago on localhost...</a>
+              </div>
+              <div class="muted"><a href="/users/ireun-282/" class="last-poster">IreuN</a> - Aug. 29, 2014</div>
+            </div>
+            <div class="dropdown">
+              <a href="/forum/resolved-reports-22/" class="subforum tooltip-top" title="Go to the Resolved Reports subforum">Resolved Reports</a>
+            </div>
+            <div class="hide forum-meta">
+              <p class="forum-description">{{ forum.description }}</p>
+              <div class="forum-stats">
+                <span>Comments: <strong>42</strong></span>
+                Articles: <strong>{{ forum.articles }}</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+        	{% endif %}
+        {% endfor %}
+       </div>
+
+       <div id="misago" class="index-category index-category-important">
+        <div class="header">
+          <h2>Topic3</h2>
+        </div>
+        {% for forum in topic3_forumlist %}
+        {% if not forloop.last %}
+        <div class="forum">
+          <div class="forum-icon">
+            <i class="icon-comment-alt"></i>
+          </div>
+          <div id="forum-{{ forum.id }}" class="forum-main">
+            <h3 class="forum-title"><a href="/forum/{{ forum.id }}/">{{ forum.name }}</a></h3>
+            <div class="forum-details">
+              <div class="thread-name">
+                <a href="/thread/update-notification-on-acp-337/new/">{{ forum.description }}</a>
+              </div>
+              <div class="muted"><a href="/users/rafalp-1/" class="last-poster">rafalp</a> - July 21, 2014</div>
+            </div>
+            
+            <div class="hide forum-meta">
+              <p class="forum-description">{{ forum.description }}</p>
+              <div class="forum-stats">
+                <span>Comments: <strong>42</strong></span>
+                Articles: <strong>{{ forum.articles }}</strong>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        {% else %}
+          <div class="forum last">
+          <div class="forum-icon">
+            <i class="icon-comment"></i>
+          </div>
+          <div id="forum-{{ forum.id }}" class="forum-main">
+            <h3 class="forum-title"><a href="/forum/{{ forum.id }}/">{{ forum.name }}</a></h3>
+            <div class="forum-details">
+              <div class="thread-name">
+                <a href="/thread/how-to-misago-on-localhost-in-5-minutes-updated-19/new/" class="tooltip-top" title="How to: Misago on localhost in 5 minutes. (Updated)">How to: Misago on localhost...</a>
+              </div>
+              <div class="muted"><a href="/users/ireun-282/" class="last-poster">IreuN</a> - Aug. 29, 2014</div>
+            </div>
+            <div class="dropdown">
+              <a href="/forum/resolved-reports-22/" class="subforum tooltip-top" title="Go to the Resolved Reports subforum">Resolved Reports</a>
+            </div>
+            <div class="hide forum-meta">
+              <p class="forum-description">{{ forum.description }}</p>
+              <div class="forum-stats">
+                <span>Comments: <strong>42</strong></span>
+                Articles: <strong>{{ forum.articles }}</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+       </div>     
+      
+        
+        
+       
+      
+      <div id="varia" class="index-category">
+        <div class="header">
+          <h2>Varia</h2>
+        </div>
+        
+        <div class="forum">
+          <div class="forum-icon">
+            <i class="icon-comment-alt"></i>
+          </div>
+          <div id="forum-19" class="forum-main">
+            <h3 class="forum-title"><a href="/forum/web-design-and-development-19/">Web Design and Development</a></h3>
+            
+            <div class="forum-details">
+              
+              
+              <div class="thread-name">
+                <a href="/thread/unicodedecodeerrorascii-codec-cant-decode-295/new/" class="tooltip-top" title="[UnicodeDecodeError]&#39;ascii&#39; codec can&#39;t decode .....">[UnicodeDecodeError]&#39;ascii&#39; cod...</a>
+              </div>
+              <div class="muted"><a href="/users/lzlzj-284/" class="last-poster">lzlzj</a> - June 2, 2014</div>
+            </div>
+            
+            
+            <div class="hide forum-meta">
+              <p class="forum-description">A place for off-topic discussion about Python, PHP, HTML, CSS, JavaScript, MySQL, etc. etc.</p>
+              <div class="forum-stats">
+                
+                <span>Posts: <strong>7</strong></span>
+                Threads: <strong>3</strong>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="forum">
+          <div class="forum-icon">
+            <i class="icon-comment-alt"></i>
+          </div>
+          <div id="forum-20" class="forum-main">
+            <h3 class="forum-title"><a href="/forum/general-chat-20/">General Chat</a></h3>
+            
+            <div class="forum-details">
+              
+              
+              <div class="thread-name">
+                <a href="/thread/hi-all-308/new/">Hi all!</a>
+              </div>
+              <div class="muted"><a href="/users/xavier-307/" class="last-poster">xavier</a> - July 26, 2014</div>
+            </div>
+            
+            
+            <div class="hide forum-meta">
+              <p class="forum-description">Anything and everything you want to talk about that doesn&#39;t fit into other forums.</p>
+              <div class="forum-stats">
+                
+                <span>Posts: <strong>51</strong></span>
+                Threads: <strong>4</strong>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="forum last">
+          <div class="forum-icon">
+            <i class="icon-comment-alt"></i>
+          </div>
+          <div id="forum-21" class="forum-main">
+            <h3 class="forum-title"><a href="/forum/testing-forum-21/">Testing Forum</a></h3>
+            
+            <div class="forum-details">
+              
+              
+              <div class="thread-name">
+                <a href="/thread/this-forum-is-emptied-automatically-32/new/" class="tooltip-top" title="This forum is emptied automatically">This forum is emptied automatic...</a>
+              </div>
+              <div class="muted"><a href="/users/rafalp-1/" class="last-poster">rafalp</a> - March 31, 2013</div>
+            </div>
+            
+            
+            <div class="hide forum-meta">
+              <p class="forum-description">Spammy forum for posting testing messages.</p>
+              <div class="forum-stats">
+                
+                <span>Posts: <strong>1</strong></span>
+                Threads: <strong>1</strong>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      
+      
+
+      
+    </div>
+  </div>
+  <div class="span4 index-sidebar">
+
+    
+
+    
+    <div class="index-ranks-list">
+      
+    </div>
+    
+
+    
+
+    
+    <div class="index-popular-threads">
+      <h4>
+        
+        Latest Replies
+        
+      </h4>
+      <ul class="unstyled">
+        
+        <li>
+          <a href="/thread/misago-forums-are-now-hosted-on-digitalocean-346/" class="index-popular-thread tooltip-top" title="Misago forums are now hosted on DigitalOcean!">Misago forums are now hosted on Digital...</a>
+          <div class="muted"><a href="/forum/project-news-8/">Project News</a> - Monday, 11:32 a.m.</div>
+        </li>
+        
+        <li>
+          <a href="/thread/misago-generator-sitemap-for-05-339/" class="index-popular-thread">Misago Generator Sitemap (for 0.5)</a>
+          <div class="muted"><a href="/forum/apps-extensions-plugins-25/">Apps, Extensions, Plugins</a> - Saturday, 5:23 p.m.</div>
+        </li>
+        
+        <li>
+          <a href="/thread/how-to-misago-on-localhost-in-5-minutes-updated-19/" class="index-popular-thread tooltip-top" title="How to: Misago on localhost in 5 minutes. (Updated)">How to: Misago on localhost in 5 minute...</a>
+          <div class="muted"><a href="/forum/questions-problems-and-issues-13/">Questions, Problems and Issues</a> - Aug. 29, 2014</div>
+        </li>
+        
+        <li>
+          <a href="/thread/update-on-06-303/" class="index-popular-thread">Update on 0.6</a>
+          <div class="muted"><a href="/forum/project-news-8/">Project News</a> - Aug. 15, 2014</div>
+        </li>
+        
+        <li>
+          <a href="/thread/tapatalk-348/" class="index-popular-thread">tapatalk</a>
+          <div class="muted"><a href="/forum/questions-problems-and-issues-13/">Questions, Problems and Issues</a> - Aug. 8, 2014</div>
+        </li>
+        
+        <li>
+          <a href="/thread/why-filling-most-text-fileds-of-database-with-base64-string-347/" class="index-popular-thread tooltip-top" title="Why filling most text fileds of Database with base64 string?">Why filling most text fileds of Databas...</a>
+          <div class="muted"><a href="/forum/questions-problems-and-issues-13/">Questions, Problems and Issues</a> - Aug. 5, 2014</div>
+        </li>
+        
+        <li>
+          <a href="/thread/error-in-changelog-post-341/" class="index-popular-thread">Error in changelog post</a>
+          <div class="muted"><a href="/forum/questions-problems-and-issues-13/">Questions, Problems and Issues</a> - July 27, 2014</div>
+        </li>
+        
+        <li>
+          <a href="/thread/hi-all-308/" class="index-popular-thread">Hi all!</a>
+          <div class="muted"><a href="/forum/general-chat-20/">General Chat</a> - July 26, 2014</div>
+        </li>
+        
+        <li>
+          <a href="/thread/error-in-search-340/" class="index-popular-thread">Error in search</a>
+          <div class="muted"><a href="/forum/resolved-reports-22/">Resolved Reports</a> - July 24, 2014</div>
+        </li>
+        
+      </ul>
+    </div>
+    
+
+    
+
+    <div class="index-stats">
+      <ul class="unstyled">
+        <li>
+          <span class="tooltip-top" title="Posts"><i class="icon-comment"></i> 841</span>
+        </li>
+        <li>
+          <span class="tooltip-top" title="Threads"><i class="icon-th-list"></i> 204</span>
+        </li>
+        <li>
+          <span class="tooltip-top" title="Members"><i class="icon-group"></i> 297</span>
+        </li>
+        
+        <li>
+          <span class="tooltip-top" title="Online"><i class="icon-map-marker"></i> 1 <span class="muted">2</span></span>
+        </li>
+        
+      </ul>
+    </div>
+
+    
+
+    
+    <form action="/read-all/" method="post" class="index-forums-read-all">
+      <input type="hidden" name="_csrf_token" value="2xFZTcL8ZECTfGSU">
+      <button type="submit" class="btn btn-link"><i class="icon-ok"></i> Mark forums read</button>
+    </form>
+    
+
+    
+
+  </div>
+</div>
+{% endblock %}
+
+{% block current_path %}
+<li class="first"><a href="/">Zion Forums</a></li>
+<li class="pull-right"><i class="icon-sitemap"></i> <a href="/forum-map/">Forum Map</a></li>
+{% endblock %}
+
+{% block forumcss %}
+  <script type="text/javascript">
+  	 $(function () {
+      function populateForumTooltip(target) {
+        return $('#forum-' + target + ' .forum-meta').html();
+      };
+      
+       {% for forum in topic1_forumlist %}
+        $('#forum-{{ forum.id }} .forum-title').tooltip({
+          template: '<div class="tooltip forum-meta-tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>',
+          placement: 'right',
+          html: true,
+          title: populateForumTooltip({{ forum.id }})
+        });
+       {% endfor %}
+       
+       {% for forum in topic2_forumlist %}
+        $('#forum-{{ forum.id }} .forum-title').tooltip({
+          template: '<div class="tooltip forum-meta-tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>',
+          placement: 'right',
+          html: true,
+          title: populateForumTooltip({{ forum.id }})
+        });
+       {% endfor %}
+       
+       {% for forum in topic3_forumlist %}
+        $('#forum-{{ forum.id }} .forum-title').tooltip({
+          template: '<div class="tooltip forum-meta-tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>',
+          placement: 'right',
+          html: true,
+          title: populateForumTooltip({{ forum.id }})
+        });
+	   {% endfor %}
+      
+      
+        
+      
+    });
+  </script>
+{% endblock %}

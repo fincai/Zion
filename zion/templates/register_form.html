@@ -1,0 +1,104 @@
+{% extends 'nav.html' %}
+
+{% block content %}
+
+<div class="row">
+  <div class="span8 offset2">
+    <div class="form-container">
+
+      <div class="form-header">
+        <h1>Register new account</h1>
+      </div>
+
+      <form action="" method="post">
+        
+        <div class="form-fields">
+          {% csrf_token %}
+          {% load widget_tweaks %}
+          <fieldset class="first">
+            <div id="username-control-group" class="control-group">
+                <label class="control-label" for="id_username">Username:</label>
+                <div class="controls">
+                    {% render_field form.username class+="span8" %}
+                    {% for error in form.username.errors %}
+               	 		<p class="help-block" style="font-weight:bold; color:red">{{ error }}</p>
+           			{% endfor %}
+                    <p class="help-block">{{ form.username.help_text }}</p>
+                </div>
+           </div>
+          </fieldset>
+          <fieldset>
+            <div id="email-control-group" class="control-group">
+                <label class="control-label" for="id_email">E-mail address</label>
+                <div class="controls controls-nested">
+                <div class="row">
+                    <div class="span4">
+                    {% render_field form.email placeholder="Enter your e-mail" class+="span4" %} 
+                    </div>
+                    <div class="span4">
+                    {% render_field form.email_rep placeholder="Repeat your e-mail" class+="span4" %}
+                    </div>
+                </div>
+                	{% for error in form.email.errors %}
+                		<p class="help-block" style="font-weight:bold; color:red">{{ error }}</p>
+                	{% endfor %}
+                	{% for error in form.email_rep.errors %}
+                		{% if not error in form.email.errors %}
+                		<p class="help-block" style="font-weight:bold; color:red">{{ error }}</p>
+                		{% endif %}
+                	{% endfor %}
+                	
+                    <p class="help-block">{{ form.email.help_text }}</p>
+                </div>
+            </div>
+          </fieldset>
+          <fieldset>
+            <div id="password-control-group" class="control-group">
+            <label class="control-label" for="id_password">Password</label>
+            <div class="controls controls-nested">
+            <div class="row">
+                <div class="span4">
+                {% render_field form.password placeholder="Enter your password" class+="span4" %} 
+                </div>
+                <div class="span4">
+                {% render_field form.password_rep placeholder="Repeat your password" class+="span4" %} 
+				</div>
+            </div>
+            	{% for error in form.password.errors %}
+               	 	<p class="help-block" style="font-weight:bold; color:red">{{ error }}</p>
+           		{% endfor %}
+           		{% for error in form.password_rep.errors %}
+                		{% if not error in form.password.errors %}
+                		<p class="help-block" style="font-weight:bold; color:red">{{ error }}</p>
+                		{% endif %}
+                {% endfor %}
+            	<p class="help-block">{{ form.password.help_text }}</p>
+            </div>
+            </div>
+          </fieldset>
+          <fieldset class="last">
+            <div id="accept_tos-control-group" class="control-group">
+            <label class="control-label" for="id_accept_tos">Forum Terms of Service:</label>
+                <div class="controls">
+                <label class="checkbox">
+                  {{ form.accepted_rules }}
+                  I have read and accept this forums <a href="/tos/">Forum Rules</a>.
+                </label>
+                {% for error in form.accepted_rules.errors %}
+               	 	<p class="help-block" style="font-weight:bold; color:red">{{ error }}</p>
+           		{% endfor %}
+                </div>
+            </div>
+          </fieldset>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">Register account</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+
+
