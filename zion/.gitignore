@@ -1,4 +1,3 @@
-!.gitignore
 *.pyc
 *.swp
 .DS_Store
