@@ -37,25 +37,22 @@
             
           </div>
           <div class="post-footer"><div class="post-rating-actions">
-              <div class="post-rating">
-                <span class="post-score post-score-upvotes post-score-good">{{ article.likes }}</span>
-                <form action="/thread/misago-forums-are-now-hosted-on-digitalocean-346/1044/upvote/" class="form-inline form-upvote" method="post">
-                  <input type="hidden" name="_csrf_token" value="eGrw2LKqd7PeiekF">
-                  <button type="submit" class="btn btn-link post-like" disabled="disabled">Like</button>
-                </form>
+          	 {% if not been_thumbup %}
+               <div class="post-rating">
+                 <span class="post-score post-score-upvotes"> <img src="/static/thumbup_black.png" alt="" width="25" height="25" id="thumb"></span>
               </div>
+              {% else %}
               <div class="post-rating">
-                <span class="post-score post-score-downvotes">{{ article.unlikes }}</span>
-              
-                <form action="/thread/misago-forums-are-now-hosted-on-digitalocean-346/1044/downvote/" class="form-inline form-downvote" method="post">
-                  {% csrf_token %}
-                  <button type="submit" class="btn btn-link post-hate">Dislike</button>
-                </form>
+                 <span class="post-score post-score-upvotes"> <img src="/static/thumbup_blue.png" alt="" width="25" height="25" id="thumb"></span>
+              </div>
+              {% endif %}
+              <div class="post-rating">
+                <span class="post-score post-score-downvotes" id="likes">{{ article.likes }}</span>
               </div>
             </div>
             
             <div class="post-actions">
-              
+
             </div></div>
         </div>
       </div>
@@ -88,7 +85,7 @@
   </ul>
 </div>
 
-    <a href="/thread/misago-forums-are-now-hosted-on-digitalocean-346/reply/" class="btn btn-inverse pull-right"><i class="icon-pencil"></i>Reply</a>
+   
     
     
     <form action="/thread/misago-forums-are-now-hosted-on-digitalocean-346/watch/" class="form-inline pull-right" method="post"><input type="hidden" name="_csrf_token" value="eGrw2LKqd7PeiekF"><input type="hidden" name="retreat" value="/thread/misago-forums-are-now-hosted-on-digitalocean-346/"><button type="submit" class="btn btn-icon tooltip-top" title="Add thread to watched list"><i class="icon-bookmark"></i></button></form>
@@ -195,7 +192,7 @@
   </ul>
 </div>
 
-    <a href="/thread/misago-forums-are-now-hosted-on-digitalocean-346/reply/" class="btn btn-inverse pull-right"><i class="icon-pencil"></i> Reply</a>
+    <a href="/thread/misago-forums-are-now-hcon-pencil"></i> Reply</a>
   </div>
 
 {% if user.is_authenticated and not been_commented %}

@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'widget_tweaks',
+    'django_ajax',
     'zion.register',
     'zion.signin',
     'zion.forums',

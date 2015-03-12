@@ -24,6 +24,8 @@ urlpatterns = patterns('zion',
     url(r'^forum/(?P<forum_id>[1-9])/article/(?P<article_id>\d+)/new_comment/$', 'comments.views.new_comment'),
     url(r'^forum/(?P<forum_id>[1-9])/article/(?P<article_id>\d+)/new_comment/success/$', 'comments.views.success_comment'),
 
+    url(r'^forum/(?P<forum_id>[1-9])/article/(?P<article_id>\d+)/thumbup/$', 'articles.views.flip_thumb'),
+
     url(r'^user/(?P<user_id>\d+)/$', 'profiles.views.show_articles'),
     #url(r'^user/(?P<user_id>\d+)/comments/$', 'profiles.views.show_comments'),
     url(r'^user/(?P<user_id>\d+)/follows/$', 'profiles.views.show_follows'),

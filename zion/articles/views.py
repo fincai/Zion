@@ -1,6 +1,8 @@
 from datetime import datetime
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, Http404, HttpResponse
+from django.views.decorators.csrf import csrf_exempt
+from django_ajax.decorators import ajax
 from zion.articles.forms import NewArticleForm
 from zion.comments.forms import NewCommentForm
 from zion.signin.models import User
@@ -86,3 +88,15 @@ def article_detailview(request, forum_id, article_id, page=1, **kwargs):
                     'comment_success':is_success,
                     'been_commented': been_commented,
                   })
+
+@ajax
+def flip_thumb(request, forum_id, article_id):
+    if request.user.is_authenticated:
+        article = Article.objects.get(id=article_id)
+        count = article.agreed_users.filter(id=request.user.id).count()
+        if count > 0:
+            return {'been_agreed': 1}
+        else:
+            Article.objects.filter(id=article_id).update(likes = article.likes + 1)
+            article.agreed_users.add(request.user)
+            return {'been_agreed': 0, 'likes':article.likes+1}

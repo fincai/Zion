@@ -15,6 +15,7 @@ class Article(models.Model):
     comments = models.PositiveIntegerField(default=0)
     closed = models.BooleanField(default=False)
     deleted = models.BooleanField(default=False)
+    agreed_users = models.ManyToManyField(User, related_name='agreed_users')
 
     class Meta:
         db_table = 'article'
