@@ -6,7 +6,12 @@
       <div class="header-row">
         <img src="/static/avatars/{{ profile_user.avatar_image }}" class="header-avatar">
         <div class="header-side">
-          <h1>{{ profile_user.username }} <small>{{ profile_user.signature }}</small></h1>
+          <h1>{{ profile_user.username }} <small> <img id="follow" src="/static/follow.png" width="150" height="60"></small></h1>
+          <h1>
+          <small class="post-score post-score-upvotes"> 
+          {{ profile_user.signature }}
+          </small>
+          </h1>
           <ul class="nav nav-tabs header-tabs">
             
             <li class="active">
