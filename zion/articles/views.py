@@ -21,13 +21,15 @@ def new_post(request, forum_id):
         form = NewArticleForm(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
-            Article.objects.create(forum=forum,
+            article = Article.objects.create(forum=forum,
                                    title=cd['name'].strip(),
                                    author=request.user,
                                    text=cd['body'],
                                    post_date=datetime.now())
-            Forum.objects.filter(id=forum_id).update(articles = forum.articles + 1)
-            User.objects.filter(id=request.user.id).update(articles = request.user.articles + 1)
+            forum.article_set.add(article)
+            Forum.objects.filter(id=forum_id).update(articles = forum.article_set.count())
+            request.user.article_set.add(article)
+            User.objects.filter(id=request.user.id).update(articles = request.user.article_set.count())
             return HttpResponseRedirect('/forum/{0}/'.format(forum_id))
 
     else:

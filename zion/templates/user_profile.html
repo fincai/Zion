@@ -72,7 +72,16 @@
 {% for article in article_list %}
   <div class="media">
     <a href="/user/{{ article.author.id }}/" class="pull-left">
-      <img class="media-object" src="/static/avatars/60_{{ article.author.avatar_image }}">
+    
+   	  {% if profile_user.has_avatar %}
+  	  <img class="media-object" src="/static/avatars/60_{{ article.author.avatar_image }}">
+      {% else %}
+        <img class="media-object" src="/static/default.png">
+      {% endif %}
+    
+    
+    
+      
     </a>
     <div class="media-body">
       <a href="/forum/{{ article.forum.id }}/article/{{ article.id }}/" class="post-preview">{{ article.title }}</a>

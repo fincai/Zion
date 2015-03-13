@@ -305,56 +305,21 @@
     <div class="index-popular-threads">
       <h4>
         
-        Latest Replies
+        Latest Articles
         
       </h4>
       <ul class="unstyled">
-        
+      {% for article in latest_articles %}
         <li>
-          <a href="/thread/misago-forums-are-now-hosted-on-digitalocean-346/" class="index-popular-thread tooltip-top" title="Misago forums are now hosted on DigitalOcean!">Misago forums are now hosted on Digital...</a>
-          <div class="muted"><a href="/forum/project-news-8/">Project News</a> - Monday, 11:32 a.m.</div>
+          <a href="/forum/{{ article.forum.id }}/article/{{ article.id }}" class="index-popular-thread tooltip-top" title="{{ article.title }}">
+          {{ article.title }}
+          </a>
+          <div class="muted"><a href="/user/{{ article.author.id }}/"> {{ article.author.username }}</a>      {{  article.post_date }} </div>
         </li>
+       {% endfor %}
+       
         
-        <li>
-          <a href="/thread/misago-generator-sitemap-for-05-339/" class="index-popular-thread">Misago Generator Sitemap (for 0.5)</a>
-          <div class="muted"><a href="/forum/apps-extensions-plugins-25/">Apps, Extensions, Plugins</a> - Saturday, 5:23 p.m.</div>
-        </li>
-        
-        <li>
-          <a href="/thread/how-to-misago-on-localhost-in-5-minutes-updated-19/" class="index-popular-thread tooltip-top" title="How to: Misago on localhost in 5 minutes. (Updated)">How to: Misago on localhost in 5 minute...</a>
-          <div class="muted"><a href="/forum/questions-problems-and-issues-13/">Questions, Problems and Issues</a> - Aug. 29, 2014</div>
-        </li>
-        
-        <li>
-          <a href="/thread/update-on-06-303/" class="index-popular-thread">Update on 0.6</a>
-          <div class="muted"><a href="/forum/project-news-8/">Project News</a> - Aug. 15, 2014</div>
-        </li>
-        
-        <li>
-          <a href="/thread/tapatalk-348/" class="index-popular-thread">tapatalk</a>
-          <div class="muted"><a href="/forum/questions-problems-and-issues-13/">Questions, Problems and Issues</a> - Aug. 8, 2014</div>
-        </li>
-        
-        <li>
-          <a href="/thread/why-filling-most-text-fileds-of-database-with-base64-string-347/" class="index-popular-thread tooltip-top" title="Why filling most text fileds of Database with base64 string?">Why filling most text fileds of Databas...</a>
-          <div class="muted"><a href="/forum/questions-problems-and-issues-13/">Questions, Problems and Issues</a> - Aug. 5, 2014</div>
-        </li>
-        
-        <li>
-          <a href="/thread/error-in-changelog-post-341/" class="index-popular-thread">Error in changelog post</a>
-          <div class="muted"><a href="/forum/questions-problems-and-issues-13/">Questions, Problems and Issues</a> - July 27, 2014</div>
-        </li>
-        
-        <li>
-          <a href="/thread/hi-all-308/" class="index-popular-thread">Hi all!</a>
-          <div class="muted"><a href="/forum/general-chat-20/">General Chat</a> - July 26, 2014</div>
-        </li>
-        
-        <li>
-          <a href="/thread/error-in-search-340/" class="index-popular-thread">Error in search</a>
-          <div class="muted"><a href="/forum/resolved-reports-22/">Resolved Reports</a> - July 24, 2014</div>
-        </li>
-        
+       
       </ul>
     </div>
     
@@ -364,13 +329,13 @@
     <div class="index-stats">
       <ul class="unstyled">
         <li>
-          <span class="tooltip-top" title="Posts"><i class="icon-comment"></i> 841</span>
+          <span class="tooltip-top" title="Articles"><i class="icon-comment"></i> {{ article_count }}</span>
         </li>
         <li>
-          <span class="tooltip-top" title="Threads"><i class="icon-th-list"></i> 204</span>
+          <span class="tooltip-top" title="Comments"><i class="icon-th-list"></i> {{ comment_count }}</span>
         </li>
         <li>
-          <span class="tooltip-top" title="Members"><i class="icon-group"></i> 297</span>
+          <span class="tooltip-top" title="Users"><i class="icon-group"></i> {{ user_count }}</span>
         </li>
         
         <li>
@@ -383,7 +348,7 @@
     
 
     
-    <form action="/read-all/" method="post" class="index-forums-read-all">
+    <form action="/" method="get" class="index-forums-read-all">
       <input type="hidden" name="_csrf_token" value="2xFZTcL8ZECTfGSU">
       <button type="submit" class="btn btn-link"><i class="icon-ok"></i> Mark forums read</button>
     </form>

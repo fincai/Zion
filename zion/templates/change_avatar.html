@@ -24,7 +24,17 @@
 
   <div class="media usercp-avatar-menu">
     <span class="pull-left">
-      <img class="media-object" src="/static/avatars/{{ user.avatar_image }}">
+    {% if user.has_avatar %}
+     <img class="media-object" src="/static/avatars/{{ user.avatar_image }}">
+    {% else %}
+     <img class="media-object" src="/static/default.png">
+    {% endif %}
+    
+    
+    
+    
+    
+      
     </span>
     <div class="media-body">
       <div class="form-header">
