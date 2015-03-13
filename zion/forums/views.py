@@ -24,7 +24,7 @@ def page_display(page, forum_id, **kwargs):
         
     else:
         page_count = to_pages(forum.articles) 
-        article_list = forum.article_set.all()[start:start+20]
+        article_list = forum.article_set.order_by('-post_date').all()[start:start+20]
         return {'count': page_count, 'list':article_list,
                 'forum':forum }
 
