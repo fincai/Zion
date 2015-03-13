@@ -97,6 +97,6 @@ def flip_thumb(request, forum_id, article_id):
         if count > 0:
             return {'been_agreed': 1}
         else:
-            Article.objects.filter(id=article_id).update(likes = article.likes + 1)
             article.agreed_users.add(request.user)
-            return {'been_agreed': 0, 'likes':article.likes+1}
+            Article.objects.filter(id=article_id).update(likes = article.agreed_users.count())
+            return {'been_agreed': 0, 'likes':article.agreed_users.count()}

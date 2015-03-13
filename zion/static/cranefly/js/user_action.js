@@ -19,6 +19,55 @@ $(document).ready(function() {
             },
         });
     });
+    
+    $("#follow").click(function(e) {
+        e.preventDefault();
+        alert("click follow!");
+        var action;
+        if ($("#follow").attr("src") == "/static/follow.png")
+            action = "follow";
+        else if ($("#follow").attr("src") == "/static/unfollow.png")
+            action = "unfollow";
+        
+            
+        var url = window.location.pathname + "follow/"
+        $.ajax({
+            "type": "POST",
+            "dataType": "json",
+            "url": url,
+            "data": {'action': action, 'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').val()},
+            "success": function(result) {
+            
+                if (result.content.action_complete) {
+                    if (action == "follow")
+                        $("#follow").attr("src", "/static/following.png")
+                    else if (action == "unfollow")
+                        $("#follow").attr("src", "/static/follow.png")
+                }
+
+                        
+            },
+        });
+    });
+    
+    $("#follow").mouseenter(function(e) {
+        e.preventDefault();
+        //alert("mouse enter!");
+        if ($("#follow").attr("src") == "/static/following.png")
+            $("#follow").attr("src", "/static/unfollow.png" );
+       
+    });
+    
+    $("#follow").mouseleave(function(e) {
+        e.preventDefault();
+        //alert("mouse leave!");
+        if ($("#follow").attr("src") == "/static/unfollow.png")
+            $("#follow").attr("src", "/static/following.png" );
+       
+    });
+
+
+
 });
 
 

@@ -31,6 +31,8 @@ urlpatterns = patterns('zion',
     url(r'^user/(?P<user_id>\d+)/follows/$', 'profiles.views.show_follows'),
     url(r'^user/(?P<user_id>\d+)/followers/$', 'profiles.views.show_followers'),
 
+    url(r'^user/(?P<user_id>\d+)/follow/$', 'profiles.views.follow_action'),
+
     url(r'^user/chavatar/$', 'avatar.views.change_avatar'),
     url(r'^user/chavatar/upload/$', 'avatar.views.upload'),
     url(r'^user/chavatar/upload/crop/$', 'avatar.views.crop'),

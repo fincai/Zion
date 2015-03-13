@@ -4,7 +4,18 @@
         <ul id="fancy-user-nav" class="nav navbar-blocks navbar-compact pull-right">
           
           <li class="user-profile dropdown">
-            <a href="/users/{{ user.username }}/" class="dropdown-toggle" data-toggle="dropdown"><div>{{ user.username }} <img src="/static/avatars/40_{{ user.avatar_image }}" alt=""><span class="caret-border"><i class="icon-caret-down"></i></span></div></a>
+          
+            <a href="/users/{{ user.username }}/" class="dropdown-toggle" data-toggle="dropdown">
+            <div>{{ user.username }}
+            {% if user.has_avatar %}
+            <img src="/static/avatars/40_{{ user.avatar_image }}" alt="">
+            {% else %}
+            <img src="/static/default.png" alt="">
+            {% endif %}
+            <span class="caret-border"><i class="icon-caret-down"></i></span>
+            </div>
+            </a>
+            
             <ul class="dropdown-menu">
               <li><a href="/user/{{ user.id }}/"><i class="icon-user"></i> Your profile</a></li>
               <li><a href="/user/chavatar/"><i class="icon-cog"></i> Change options</a></li>

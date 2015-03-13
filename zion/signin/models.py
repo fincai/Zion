@@ -6,6 +6,7 @@ from zion.settings import AVATAR_ROOT
 
 class User(AbstractUser):
     gender = models.BooleanField(default=False)
+    has_avatar = models.BooleanField(default=False)
     avatar_image = models.CharField(max_length=255, null=True, blank=True)
     _avatar_crop = models.CharField(max_length=255, null=True, blank=True, db_column='avatar_crop')
     avatar_original = models.CharField(max_length=255, null=True, blank=True)

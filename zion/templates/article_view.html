@@ -108,7 +108,11 @@
     {% endif %}
     
       <div class="post-body">
+      {% if comment.poster.has_avatar %}
         <a href="/user/{{ comment.poster.id }}/"><img src="/static/avatars/100_{{ comment.poster.avatar_image }}" alt="" class="user-avatar"></a>
+       {% else %}
+        <a href="/user/{{ comment.poster.id }}/"><img src="/static/default.png" alt="" class="user-avatar"></a>
+        {% endif %}
         <div class="post-arrow"></div>
         <div class="post-content">
           <div class="post-header">
@@ -194,14 +198,17 @@
   </ul>
 </div>
 
-    <a href="/thread/misago-forums-are-now-hcon-pencil"></i> Reply</a>
   </div>
 
 {% if user.is_authenticated and not been_commented %}
 <div class="thread-quick-reply">
     <form action="/forum/{{ forum.id }}/article/{{ article.id }}/new_comment/" enctype="multipart/form-data" method="post">
 	  {% csrf_token %}
+	  {% if user.has_avatar %}
       <img src="/static/avatars/100_{{ user.avatar_image }}" alt="Your Avatar" class="user-avatar">
+      {% else %}
+      <img src="/static/default.png" alt="Your Avatar" class="user-avatar">
+      {% endif %}
       
 <div class="editor editor-editable">
   <div class="editor-input">

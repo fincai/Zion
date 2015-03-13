@@ -4,18 +4,37 @@
   <div class="page-header header-primary user-profile-header">
     <div class="container">
       <div class="header-row">
-        <img src="/static/avatars/{{ profile_user.avatar_image }}" class="header-avatar">
-        <div class="header-side">
-          <h1>{{ profile_user.username }} <small>{{ profile_user.signature }}</small></h1>
+        
+        {% if profile_user.has_avatar %}
+            <img src="/static/avatars/{{ profile_user.avatar_image }}" class="header-avatar">
+      	{% else %}
+            <img src="/static/default.png" class="header-avatar">
+      	{% endif %}
+        
+         <div class="header-side">
+          <h1>{{ profile_user.username }} 
+          {% ifnotequal profile_user.id user.id %}
+          	{%if not is_following %}
+          		<small> <img id="follow" src="/static/follow.png" width="140" height="50"></small>
+          	{% else %}
+          		<small> <img id="follow" src="/static/following.png" width="140" height="50"></small>
+          	{% endif %}
+          {% endifnotequal %}
+          </h1>
+          <h1>
+          <small class="post-score post-score-upvotes"> 
+          {{ profile_user.signature }}
+          </small>
+          </h1>
+        
+        
           <ul class="nav nav-tabs header-tabs">
             
             <li>
               <a href="/user/{{ profile_user.id }}/">Articles</a>
             </li>
             
-            <li>
-              <a href="/user/{{ profile_user.id }}/comments/">Comments</a>
-            </li>
+           
             
             <li class="active">
               <a href="/user/{{ profile_user.id }}/follows/">Follows</a>

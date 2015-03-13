@@ -108,6 +108,7 @@ def crop(request):
 		# Update new avatar
         request.user.delete_avatar_image()
         request.user.avatar_image = image_name
+        request.user.has_avatar = True
         request.user.save(force_update=True)
         return redirect('/user/chavatar/')
 
