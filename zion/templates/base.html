@@ -5,7 +5,7 @@
     <title>Welcome to Zion</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Zion is fully-featured internet forum application for creative writing">
-    <link href="{{ STATIC_URL }}cranefly/css/cranefly.css" rel="stylesheet">
+    <link href="{{ STATIC_URL }}cranefly/css/cranefly.css?{% now "U" %}" rel="stylesheet">
     <!--[if IE 7]>
     <link rel="stylesheet" href="{{ STATIC_URL }}cranefly/css/font-awesome-ie7.min.css">
     <![endif]-->
@@ -13,7 +13,7 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ STATIC_URL }}site-logo.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ STATIC_URL }}site-logo-72.png">
     <link rel="apple-touch-icon-precomposed" href="{{ STATIC_URL }}site-logo-57.png">
-    <link rel="shortcut icon" href="{{ STATIC_URL }}shortcut-icon.png">
+    <link rel="shortcut icon" href="{{ STATIC_URL }}shortcut-icon.ico">
     <script src="{{ STATIC_URL }}cranefly/js/jquery-1.7.2.min.js"></script>
     <script src="{{ STATIC_URL }}cranefly/js/user_action.js"></script>
     <script src="{{ STATIC_URL }}cranefly/js/bootstrap.min.js"></script>
