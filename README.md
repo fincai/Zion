@@ -11,7 +11,7 @@
 - [django_ajax](https://github.com/yceruto/django-ajax)
 
 ## Database Migration
-1. Create a new database named "zion".
+1. Create a new database named "zion" on your computer.
 2. Modify the settings.py file, replace the "USER" and "PASSWORD" 
    in DATABASES setting by your own database's user and password.
    
