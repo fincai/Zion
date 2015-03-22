@@ -19,7 +19,7 @@
 
 $ python manage.py migrate
 
-## Test The Project On development Server
+## Test The Project On Development Server
 1.Enter the project directory, run the following on the command line (or cmd.exe on Windows):
 
    $ python manage.py runserver
