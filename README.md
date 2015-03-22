@@ -17,11 +17,11 @@
    
 3. Enter the project directory, run the following on the command line (or cmd.exe on Windows):
 
-$ python manage.py migrate
+	$ python manage.py migrate
 
 ## Test The Project On Development Server
 1.Enter the project directory, run the following on the command line (or cmd.exe on Windows):
 
-   $ python manage.py runserver
+    $ python manage.py runserver
    
 2.Open your browser and access 127.0.0.1:8000
