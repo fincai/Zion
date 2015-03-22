@@ -16,9 +16,13 @@
    in DATABASES setting by your own database's user and password.
    
 3. Enter the project directory, run the following on the command line (or cmd.exe on Windows):
-$ python manage.py migrate
+{% codeblock %}
+python manage.py migrate
+{% endcodeblock %}
 
 ## Test The Project On development Server
 1. Enter the project directory, run the following on the command line (or cmd.exe on Windows):
-$ python manage.py runserver
+{% codeblock %}
+python manage.py runserver
+{% endcodeblock %}
 2. Open your browser and access 127.0.0.1:8000
