@@ -92,6 +92,7 @@ def article_detailview(request, forum_id, article_id, page=1, **kwargs):
                   })
 
 @ajax
+@csrf_exempt
 def flip_thumb(request, forum_id, article_id):
     if request.user.is_authenticated:
         article = Article.objects.get(id=article_id)
