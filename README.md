@@ -12,7 +12,7 @@
 
 ## Database Migration
 1. Create a new database named "zion" on your computer.
-2. Modify the settings.py file, replace the "USER" and "PASSWORD" 
+2. Modify the settings.py file. Replace the content of  "USER" and "PASSWORD" 
    in DATABASES setting by your own database's user and password.
    
 3. Enter the project directory, run the following on the command line (or cmd.exe on Windows):
