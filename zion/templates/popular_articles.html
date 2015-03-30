@@ -1,0 +1,91 @@
+{% extends 'nav.html' %}
+{% block page_header %}
+<div class="page-header header-primary">
+  <div class="container">
+     <h1>Popular Articles</h1>
+  </div>
+</div>
+{% endblock %}
+
+
+{% block content %}
+
+  <div class="forum-threads-list">
+    <ul>
+     {% for article in curr_list %}
+      <li>
+        <div class="thread-icon">
+          <a href="/thread/please-remove-image-pop-up-325/new/" class="thread-icon-last tooltip-top" title="Click to see last post">
+            <i class="icon-circle-blank"></i>
+          </a>
+          
+        </div>
+        <div class="thread-body">
+          <ul class="thread-activity">
+            <li class="thread-replies tooltip-top" title="Replies">
+              {{ article.comments }}
+            </li>
+            <li class="thread-last-reply tooltip-top" title="Last post July 20, 2014">
+              <a href="/thread/please-remove-image-pop-up-325/last/">{{ article.post_date }}</a>
+            </li>
+            <li class="thread-author tooltip-top" title="Thread by avi">
+              <a href="/users/avi-292/"><img src="http://www.gravatar.com/avatar/e680a34f1859583e2379c467da4f8ee3?s=24" alt="avi" class="user-avatar"></a>
+            </li>
+            <li class="thread-poster tooltip-top" title="Last reply by rafalp">
+              <a href="/users/rafalp-1/"><img src="http://media.misago-project.org/avatars/24_1_iMliobwz.png" alt="rafalp" class="user-avatar"></a>
+            </li>
+            
+          </ul>
+          <div class="thread-title">
+            <a href="/forum/{{ article.forum_id }}/article/{{ article.id }}/" class="thread-link">{{ article.title }}</a>
+          </div>
+        </div>
+      </li>
+      {% endfor %}
+      
+    </ul>
+    
+    
+  </div>
+  <div class="forum-threads-extra">
+    
+<div class="pagination pull-left">
+  <ul>
+    <li class="count">Page <strong>{{ page }}</strong> of <strong>{{ page_count }}</strong></li>
+    {% if page > 1 %}
+    <li><a href="/popular/page/{{ prev_page }}/" class="tooltip-top" title="Newer Articles"><i class="icon-chevron-left"></i></a></li>
+    {% endif %}
+    {% if page < page_count %}
+    <li><a href="/popular/page/{{ next_page }}/" title="Older Articles"><i class="icon-chevron-right"></i></a></li>
+    {% endif %}
+  </ul>
+</div>
+
+
+    
+  </div>
+
+
+{% endblock %}
+
+
+{% block current_path %}
+<li class="first"><a href="/">Misago Forums</a> <span class="divider"><i class="icon-chevron-right"></i></span></li>
+<li class="first"><a href="/popular/">Popular Articles</a> <span class="divider"></span></li>
+
+      
+<li class="pull-right"><i class="icon-sitemap"></i> <a href="/forum-map/">Forum Map</a></li>
+{% endblock %}
+
+{% block forumcss %}  
+  <script type="text/javascript">
+    $(function () {
+      function populateForumTooltip(target) {
+        return $('#forum-' + target + ' .forum-meta').html();
+      };
+      
+    });
+  </script>
+{% endblock %}
+   
+  

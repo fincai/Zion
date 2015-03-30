@@ -16,4 +16,3 @@ def validate_username(value):
     
 def validate_password(value):
     pass
-    

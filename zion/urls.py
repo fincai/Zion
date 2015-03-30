@@ -13,6 +13,10 @@ urlpatterns = patterns('zion',
     url(r'^signin/$', 'signin.views.form'),
     url(r'^signout/$', 'views.signout'),
 
+    url(r'^popular/$', 'popular.views.popular_list'),
+    url(r'^popular/page/(?P<page>\d+)/$', 'popular.views.popular_list'),
+
+
     url(r'^forum/(?P<forum_id>[1-9])/$', 'forums.views.show_list'),
     url(r'^forum/(?P<forum_id>[1-9])/page/(?P<page>\d+)/$', 'forums.views.show_list'),
 
