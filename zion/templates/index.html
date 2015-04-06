@@ -9,7 +9,7 @@
       
       <div id="project-meta" class="index-category index-category-important">
         <div class="header">
-          <h2>Topic1</h2>
+          <h2>Literature & Fiction Writing</h2>
         </div>
         {% for forum in topic1_forumlist %}
         <div class="forum">
@@ -20,17 +20,18 @@
             <h3 class="forum-title"><a href="/forum/{{ forum.id }}/" >{{ forum.name }}</a></h3>
             <div class="forum-details">
               <div class="thread-name">
-                <a href="/thread/misago-forums-are-now-hosted-on-digitalocean-346/new/" class="tooltip-right" title="Misago forums are now hosted on DigitalOcean!">{{ forum.description }}</a>
+                <a href="/forum/{{ forum.id }}/" class="tooltip-right" title="">{{ forum.description }}</a>
               </div>
-              <div class="muted"><a href="/users/fengyucai-324/" class="last-poster">fengyucai</a> - Monday, 11:32 a.m.</div>
+              <div class="muted"><a href="/users/{{ forum.last_author.id }}/" class="last-poster">{{ forum.last_author.username }}</a> - {{ forum.last_postdate }}</div>
             </div>
             
             
             <div class="hide forum-meta">
               <p class="forum-description">{{ forum.description }}</p>
               <div class="forum-stats">
-                <span>Comments: <strong>42</strong></span>
+                <span>
                 Articles: <strong>{{ forum.articles }}</strong>
+                </span>
               </div>
             </div>
             
@@ -48,7 +49,7 @@
             
             <div class="forum-details">
               <div class="thread-name">
-                <a href="https://fengyucai.github.io">https://fengyucai.github.io</a>
+                <a href="http://fengyucai.github.io">http://fengyucai.github.io</a>
               </div>
               <div class="muted"><span class="last-poster">2,525</span> clicks</div>
             </div>
@@ -70,7 +71,7 @@
       
       <div id="misago" class="index-category index-category-important">
         <div class="header">
-          <h2>Topic2</h2>
+          <h2>Poetry Writing</h2>
         </div>
         {% for forum in topic2_forumlist %}
       	  {% if not forloop.last %}
@@ -84,16 +85,16 @@
               <div class="thread-name">
                   <a href="/thread/update-notification-on-acp-337/new/">{{ forum.description }}</a>
               </div>
-              <div class="muted"><a href="/users/rafalp-1/" class="last-poster">rafalp</a> - July 21, 2014</div>
+              <div class="muted"><a href="/users/{{ forum.last_author.id }}/" class="last-poster">{{ forum.last_author.username }}</a> - {{ forum.last_postdate }}</div>
             </div>
             
             <div class="hide forum-meta">
               <p class="forum-description">{{ forum.description }}</p>
               <div class="forum-stats">
                 
-                <span>Comments: <strong>42</strong></span>
+                <span>
                 Articles: <strong>{{ forum.articles }}</strong>
-                
+               </span>
               </div>
             </div>
 
@@ -108,18 +109,18 @@
             <h3 class="forum-title"><a href="/forum/{{ forum.id }}/">{{ forum.name }}</a></h3>
             <div class="forum-details">
               <div class="thread-name">
-                <a href="/thread/how-to-misago-on-localhost-in-5-minutes-updated-19/new/" class="tooltip-top" title="How to: Misago on localhost in 5 minutes. (Updated)">How to: Misago on localhost...</a>
+                <a href="/thread/how-to-misago-on-localhost-in-5-minutes-updated-19/new/" class="tooltip-top" title="">How to: Misago on localhost...</a>
               </div>
-              <div class="muted"><a href="/users/ireun-282/" class="last-poster">IreuN</a> - Aug. 29, 2014</div>
+              <div class="muted"><a href="/users/{{ forum.last_author.id }}/" class="last-poster">{{ forum.last_author.username }}</a> - {{ forum.last_postdate }}</div>
             </div>
             <div class="dropdown">
-              <a href="/forum/resolved-reports-22/" class="subforum tooltip-top" title="Go to the Resolved Reports subforum">Resolved Reports</a>
             </div>
             <div class="hide forum-meta">
               <p class="forum-description">{{ forum.description }}</p>
               <div class="forum-stats">
-                <span>Comments: <strong>42</strong></span>
+                <span>
                 Articles: <strong>{{ forum.articles }}</strong>
+                </span>
               </div>
             </div>
           </div>
@@ -130,7 +131,7 @@
 
        <div id="misago" class="index-category index-category-important">
         <div class="header">
-          <h2>Topic3</h2>
+          <h2>Professional & Technical Writing</h2>
         </div>
         {% for forum in topic3_forumlist %}
         {% if not forloop.last %}
@@ -144,14 +145,16 @@
               <div class="thread-name">
                 <a href="/thread/update-notification-on-acp-337/new/">{{ forum.description }}</a>
               </div>
-              <div class="muted"><a href="/users/rafalp-1/" class="last-poster">rafalp</a> - July 21, 2014</div>
+              <div class="muted"><a href="/users/{{ forum.last_author.id }}/" class="last-poster">{{ forum.last_author.username }}</a> - {{ forum.last_postdate }}</div>
             </div>
             
             <div class="hide forum-meta">
               <p class="forum-description">{{ forum.description }}</p>
               <div class="forum-stats">
-                <span>Comments: <strong>42</strong></span>
+                <span>
                 Articles: <strong>{{ forum.articles }}</strong>
+               </span>
+
               </div>
             </div>
 
@@ -166,18 +169,18 @@
             <h3 class="forum-title"><a href="/forum/{{ forum.id }}/">{{ forum.name }}</a></h3>
             <div class="forum-details">
               <div class="thread-name">
-                <a href="/thread/how-to-misago-on-localhost-in-5-minutes-updated-19/new/" class="tooltip-top" title="How to: Misago on localhost in 5 minutes. (Updated)">How to: Misago on localhost...</a>
+                <a href="/thread/how-to-misago-on-localhost-in-5-minutes-updated-19/new/" class="tooltip-top" title="">How to: Misago on localhost...</a>
               </div>
-              <div class="muted"><a href="/users/ireun-282/" class="last-poster">IreuN</a> - Aug. 29, 2014</div>
+              <div class="muted"><a href="/users/{{ forum.last_author.id }}/" class="last-poster">{{ forum.last_author.username }}</a> - {{ forum.last_postdate }}</div>
             </div>
             <div class="dropdown">
-              <a href="/forum/resolved-reports-22/" class="subforum tooltip-top" title="Go to the Resolved Reports subforum">Resolved Reports</a>
             </div>
             <div class="hide forum-meta">
               <p class="forum-description">{{ forum.description }}</p>
               <div class="forum-stats">
-                <span>Comments: <strong>42</strong></span>
+                <span>
                 Articles: <strong>{{ forum.articles }}</strong>
+                </span>
               </div>
             </div>
           </div>
@@ -192,7 +195,7 @@
       
       <div id="varia" class="index-category">
         <div class="header">
-          <h2>Varia</h2>
+          <h2>Discussion Board</h2>
         </div>
         
         <div class="forum">

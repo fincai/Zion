@@ -43,6 +43,10 @@ INSTALLED_APPS = (
     'zion.forums',
     'zion.articles',
     'zion.comments',
+    'zion.avatar',
+    'zion.profiles',
+    'zion.popular',
+    'zion.tags',
 )
 
 MIDDLEWARE_CLASSES = (

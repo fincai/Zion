@@ -1,0 +1,85 @@
+{% extends 'nav.html' %}
+{% block content %}
+	<div class="row">
+  <div class="span8">
+    <div class="index-forums-list">
+    <div style="float:left;">
+    {% for tag in taglist1 %}
+     <a class="label" href="/tag/">{{ tag.keyword }}</a>({{ tag.article_count }})<br>
+    {% endfor %}
+    </div>
+    
+    <div style="float: left; margin-left: 80px;">
+    	
+    </div>
+    
+    <div style="float: left; margin-left: 80px">
+    
+    </div>
+
+      
+      
+      
+      
+
+      
+        
+        
+       
+      
+
+      
+    </div>
+  </div>
+
+
+    
+
+  </div>
+{% endblock %}
+
+{% block current_path %}
+<li class="first"><a href="/">Zion Forums</a></li>
+<li class="pull-right"><i class="icon-sitemap"></i> <a href="/forum-map/">Forum Map</a></li>
+{% endblock %}
+
+{% block forumcss %}
+  <script type="text/javascript">
+  	 $(function () {
+      function populateForumTooltip(target) {
+        return $('#forum-' + target + ' .forum-meta').html();
+      };
+      
+       {% for forum in topic1_forumlist %}
+        $('#forum-{{ forum.id }} .forum-title').tooltip({
+          template: '<div class="tooltip forum-meta-tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>',
+          placement: 'right',
+          html: true,
+          title: populateForumTooltip({{ forum.id }})
+        });
+       {% endfor %}
+       
+       {% for forum in topic2_forumlist %}
+        $('#forum-{{ forum.id }} .forum-title').tooltip({
+          template: '<div class="tooltip forum-meta-tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>',
+          placement: 'right',
+          html: true,
+          title: populateForumTooltip({{ forum.id }})
+        });
+       {% endfor %}
+       
+       {% for forum in topic3_forumlist %}
+        $('#forum-{{ forum.id }} .forum-title').tooltip({
+          template: '<div class="tooltip forum-meta-tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>',
+          placement: 'right',
+          html: true,
+          title: populateForumTooltip({{ forum.id }})
+        });
+	   {% endfor %}
+      
+      
+        
+      
+    });
+  </script>
+{% endblock %}

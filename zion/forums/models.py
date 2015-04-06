@@ -1,4 +1,5 @@
 from django.db import models
+from zion.signin.models import User
 
 class Forum(models.Model):
     topic = models.CharField(max_length=50)
@@ -6,6 +7,8 @@ class Forum(models.Model):
     description = models.CharField(max_length=255)
     articles = models.PositiveIntegerField(default=0)
     closed = models.BooleanField(default=False)
+    last_author = models.ForeignKey(User, null=True)
+    last_postdate = models.DateTimeField(null=True, blank=True)
     
     class Meta:
         db_table = 'forum'

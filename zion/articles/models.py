@@ -16,6 +16,7 @@ class Article(models.Model):
     closed = models.BooleanField(default=False)
     deleted = models.BooleanField(default=False)
     agreed_users = models.ManyToManyField(User, related_name='agreed_users')
+    last_commentator = models.ForeignKey(User, related_name="last_commentator", null=True)
 
     class Meta:
         db_table = 'article'

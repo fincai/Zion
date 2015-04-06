@@ -12,9 +12,19 @@
     </ul>
     <h1>{{ article.title }}</h1>
     <ul class="unstyled header-stats">
+    
       <li><i class="icon-time"></i>{{ article.post_date }}</li>
       <li><i class="icon-user"></i> <a href="/user/{{ article.author.id }}/">{{ article.author.username }}</a></li>
       <li><i class="icon-comment"></i> {{ article.comments }} replies</li>
+      <li>
+      <i class="icon-tag"></i>
+      {% for tag in tag_list %}
+      <a href="" class="label label-info thread-prefix">{{ tag.keyword }}</a>
+      {% endfor %}
+      </li>
+     
+
+
       <br />
     </ul>
   </div>

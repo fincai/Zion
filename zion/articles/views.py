@@ -9,27 +9,44 @@ from zion.signin.models import User
 from zion.forums.models import Forum
 from zion.articles.models import Article
 from zion.comments.models import Comment
+from zion.tags.models import Tag
 from zion.forums.views import page_display
 
 def new_post(request, forum_id):
     try:
         forum = Forum.objects.get(id=forum_id) 
     except Forum.DoesNotExist:
-        return Http404
-        
+         return Http404
+            
     if request.method == 'POST':
         form = NewArticleForm(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
             article = Article.objects.create(forum=forum,
-                                   title=cd['name'].strip(),
-                                   author=request.user,
-                                   text=cd['body'],
-                                   post_date=datetime.now())
+                                       title=cd['name'].strip(),
+                                       author=request.user,
+                                       text=cd['body'],
+                                       post_date=datetime.now())
             forum.article_set.add(article)
             Forum.objects.filter(id=forum_id).update(articles = forum.article_set.count())
+            Forum.objects.filter(id=forum_id).update(last_author = request.user)
+            Forum.objects.filter(id=forum_id).update(last_postdate = article.post_date)
+
             request.user.article_set.add(article)
             User.objects.filter(id=request.user.id).update(articles = request.user.article_set.count())
+            # insert new tag or add article to existing tag
+            keywords = request.POST['keywords'].split(',');
+            for kw in keywords:
+                if kw != '':
+                    if Tag.objects.filter(keyword=kw).count() == 0:
+                        tag = Tag.objects.create(keyword=kw, article_count=1);
+                        tag.articles.add(article)
+                    else:
+                        tag = Tag.objects.get(keyword=kw)
+                        tag.articles.add(article)
+                        Tag.objects.filter(keyword=kw).update(article_count=tag.articles.count())
+                        
+                        
             return HttpResponseRedirect('/forum/{0}/'.format(forum_id))
 
     else:
@@ -74,14 +91,16 @@ def article_detailview(request, forum_id, article_id, page=1, **kwargs):
         except Comment.DoesNotExist:
             been_commented = False
     
-    
+    article = Article.objects.get(id=article_id)
+    tag_list = article.tag_set.all()
 
     return render(request,
                   'article_view.html',
                   { 'user': request.user,
                     'form': comment_form,
                     'forum':pages['forum'],
-                    'article':pages['article'],
+                    'article':article,
+                    'tag_list': tag_list,
                     'page':page,
                     'prev_page':page - 1,
                     'next_page':page + 1,

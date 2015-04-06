@@ -22,28 +22,51 @@
   <div class="row">
     <div class="span8 offset2">
       <div class="posting">
+                  
         <div class="form-container">
 
           <div class="form-header">
             <h1>Post New Article</h1>
+				
           </div>
 
-          <form action="" method="post" enctype="multipart/form-data">
+          <form id = "form" action="" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {% load widget_tweaks %}
             
             
             <div id="thread_name-control-group" class="control-group">
+            
+
+	
     <label class="control-label" for="id_thread_name">Article Name:</label>
+    
+    
     <div class="controls">
         {% render_field form.name class+="span8" %}
         {% for error in form.name.errors %}
                <p class="help-block" style="font-weight:bold; color:red">{{ error }}</p>
         {% endfor %}
     </div>
+    <hr>
+             <span  class="control-label">Keywords:</span>
+             	<input id="keywords" name="keywords" maxlength="100" type="hidden">
+
+    			<input id="newtag" maxlength="60" type="text">
+				<a id="addtag" class="btn btn-primary">save</a>
+			<hr>
+			<div id="tags"><ul id="taglist" style="display:inline;"></ul></div>
+
+				
+    		<hr>
+    
+    
+
+
+	
+    
   </div>
             
-            <hr>
             <h4>Article Body</h4>
             
             
@@ -69,7 +92,7 @@
       <li><a href="#" class="tooltip-top btn editor-hr" title="Insert Horizontal Line"><i class="icon-minus"></i></a></li>
     </ul>
     <a href="/markdown/" class="editor-help" target="_blank">Formatting Help</a>
-    <button name="save" type="submit" class="btn btn-primary pull-right">Post Article</button>
+    <button id="postbutton" type="submit" class="btn btn-primary pull-right">Post Article</button>
     
   <button id="editor-preview" name="preview" type="submit" class="btn pull-right">Preview</button>
 

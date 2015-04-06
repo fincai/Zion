@@ -33,7 +33,11 @@ def new_comment(request, forum_id, article_id, page=1):
                                    poster=request.user,
                                    article=article,
                                    text=cd['comment'])
-            Article.objects.filter(id=article_id).update(comments = article.comments + 1)
+            article.comment_set.add(comment)
+
+            Article.objects.filter(id=article_id).update(comments = article.comment_set.count())
+            Article.objects.filter(id=article_id).update(last_commentator = request.user)
+            
             #return article_detailview(request, forum_id, article_id, page, comment_success=True)
             return HttpResponseRedirect('/forum/{0}/article/{1}/new_comment/success/#comment-{2}'. \
                                    format(forum_id, article_id, comment.id))

@@ -15,7 +15,7 @@
     <link rel="apple-touch-icon-precomposed" href="{{ STATIC_URL }}site-logo-57.png">
     <link rel="shortcut icon" href="{{ STATIC_URL }}shortcut-icon.ico">
     <script src="{{ STATIC_URL }}cranefly/js/jquery-1.7.2.min.js"></script>
-    <script src="{{ STATIC_URL }}cranefly/js/user_action.js"></script>
+    <script src="{{ STATIC_URL }}cranefly/js/user_action.js?{% now "U" %}"></script>
     <script src="{{ STATIC_URL }}cranefly/js/bootstrap.min.js"></script>
 	
 
@@ -75,11 +75,9 @@
         <ul class="nav navbar-blocks pull-left">
           <li><a href="/" title="Forum Home" class="tooltip-bottom"><i class="icon-th-list"></i></a></li>
           
-          <li><a href="/popular/" title="Popular Threads" class="hot tooltip-bottom"><i class="icon-fire"></i></a></li>
-          <li><a href="/new/" title="New Threads" class="fresh tooltip-bottom"><i class="icon-leaf"></i></a></li>
-          
-          <li><a href="/search/" title="Search Community" class="tooltip-bottom"><i class="icon-search"></i></a></li>
-          
+          <li><a href="/popular/" title="Popular Articles" class="hot tooltip-bottom"><i class="icon-fire"></i></a></li>
+          <li><a href="/tag/" title="Tagged Articles" class="fresh tooltip-bottom"><i class="icon-leaf"></i></a></li>
+        
           <li><a href="/users/" title="Browse Users" class="tooltip-bottom"><i class="icon-group"></i></a></li>
           <li><a href="/tos/" title="Forum Rules" class="tooltip-bottom"><i class="icon-certificate"></i></a></li>
           

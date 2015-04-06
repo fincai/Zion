@@ -74,12 +74,16 @@
   
 {% for person in followers_list %}
   <div class="media">
-    <a href="/users/fengyucai-324/" class="pull-left">
-      <img class="media-object" src="avatar.png">
+    <a href="/user/{{ person.id }}/" class="pull-left">
+       {% if person.has_avatar %}
+  	  	<img class="media-object" src="/static/avatars/60_{{ person.avatar_image }}">
+  	   {% else %}
+        <img class="media-object" src="/static/default.png">
+       {% endif %}
     </a>
     <div class="media-body">
       <a href="/user/{{ person.id }}" class="post-preview">{{ person.username }}</a>
-      <div class="media-footer"> Posted in <a href="/forum/{{ article.forum.id }}/">{{ article.forum.name }}</a> {{ article.post_date }}</div>
+      <div class="media-footer"> {{ person.signature }}</div>
     </div>
   </div>
   <hr>

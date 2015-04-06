@@ -4,7 +4,7 @@ $(document).ready(function() {
         //alert("click!");
         if ($("#thumb").attr("src") == "/static/thumbup_blue.png")
             return;
-        var url = window.location.pathname + "thumbup/"
+        var url = window.location.pathname + "thumbup/";
         $.ajax({
             "type": "POST",
             "dataType": "json",
@@ -15,6 +15,7 @@ $(document).ready(function() {
                         $("#likes").html(result.content.likes);
                         $("#thumb").attr("src", "/static/thumbup_blue.png");
                     } else {
+                        alert("been agreed!");
                     }
             },
         });
@@ -65,6 +66,69 @@ $(document).ready(function() {
             $("#follow").attr("src", "/static/following.png" );
        
     });
+    
+    $("#addtag").click(function(e) {
+        e.preventDefault();
+        var tagstr = $.trim($('#newtag').val());
+        var regex = new RegExp('^[a-z]+$');
+        if (regex.test(tagstr)) {
+            if ($("li[class='item']").length > 5) {
+                alert("Too many keywords!");
+                return;
+            }
+            var duplicate = false;
+            $('#tags ul li button.key').each(function(){
+                if ($(this).text() == tagstr) {
+                    duplicate = true;
+                    return;
+                }
+                    
+            });
+            if (duplicate) {
+                alert("duplicate keywords!");
+                return;
+            }
+            liHtml = '<li class="item" style="list-style-type:none; display:inline;"><button name="keyword" class="label label-success thread-prefix key">' + tagstr + '</button><button id="" class="cancel label">x</button></li>&nbsp&nbsp';
+            $("#tags ul").append(liHtml);
+
+        }
+        else {
+            alert("invalid tag!");
+        }
+
+    });
+    
+    $('#tags button.cancel').live('click', function(){
+        alert("remove!");
+        $(this).parent().remove();
+       
+   });
+   
+   /*
+   $("#postbutton").click(function(e) {
+        e.preventDefault();
+        alert("click!");
+        var keywords= [];
+        $('#tags ul li button.key').each(function(){
+            keywords.push($(this).text());
+        });
+        var url = window.location.pathname;
+        $.post(url, {'name': $('#id_name').val(), 'body': $('#id_body').text(), 'keywords':keywords});
+        
+    });
+    */
+    
+    $("#form").submit(function(){
+        //alert("hello");
+        var keywords = "";
+        $('#tags ul li button.key').each(function(){
+            keywords += ($(this).text() + ",");
+        });
+        $('#keywords').val(keywords);
+        return true;
+    });
+   
+    
 
 
 

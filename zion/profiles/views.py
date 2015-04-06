@@ -34,11 +34,18 @@ def show_follows(request, user_id):
         raise Http404
 
     follows_list = user.follows_set.all()
+
+    is_following = True
+    count = user.fans_set.filter(id=request.user.id).count()
+    if count == 0:
+        is_following = False
+
     
     return render(request, 
                   'user_follows.html',
                   {'user':request.user,
                    'profile_user':user,
+                   'is_following':is_following,
                    'follows_list':follows_list,
                   })
     
@@ -49,11 +56,19 @@ def show_followers(request, user_id):
         raise Http404
 
     followers_list = user.fans_set.all()
+
+    
+    is_following = True
+    count = user.fans_set.filter(id=request.user.id).count()
+    if count == 0:
+        is_following = False
+    
     
     return render(request, 
                   'user_followers.html',
                   {'user':request.user,
                    'profile_user':user,
+                   'is_following':is_following,
                    'followers_list':followers_list,
                   })
 
