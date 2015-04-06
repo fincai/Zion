@@ -25,15 +25,27 @@
             <li class="thread-replies tooltip-top" title="Replies">
               {{ article.comments }}
             </li>
-            <li class="thread-last-reply tooltip-top" title="Last post July 20, 2014">
+            <li class="thread-last-reply tooltip-top" title="Last post on {{ article.post_date }}">
               <a href="/thread/please-remove-image-pop-up-325/last/">{{ article.post_date }}</a>
             </li>
-            <li class="thread-author tooltip-top" title="Thread by avi">
-              <a href="/users/avi-292/"><img src="http://www.gravatar.com/avatar/e680a34f1859583e2379c467da4f8ee3?s=24" alt="avi" class="user-avatar"></a>
+            
+             <li class="thread-author tooltip-top" title="Last comment by {{ article.last_commentator.username }}">
+              <a href="/user/{{ article.last_commentator.id }}/">
+             {% if article.last_commentator %}
+              {% if article.last_commentator.has_avatar %}
+  	  		   <img class="user-avatar" src="/static/avatars/24_{{ article.last_commentator.avatar_image }}">
+  	  		  {% else %}
+      		   <img class="user-avatar" src="/static/default.png">
+      		 {% endif %}
+      		 {% endif %}
+              </a>
             </li>
-            <li class="thread-poster tooltip-top" title="Last reply by rafalp">
-              <a href="/users/rafalp-1/"><img src="http://media.misago-project.org/avatars/24_1_iMliobwz.png" alt="rafalp" class="user-avatar"></a>
-            </li>
+            
+            
+            
+            
+            
+            
             
           </ul>
           <div class="thread-title">

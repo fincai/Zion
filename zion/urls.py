@@ -16,7 +16,12 @@ urlpatterns = patterns('zion',
     url(r'^popular/$', 'popular.views.popular_list'),
     url(r'^popular/page/(?P<page>\d+)/$', 'popular.views.popular_list'),
 
-    url(r'^tag/$', 'tags.views.show_articles'),
+    url(r'^tag/$', 'tags.views.show_hot_keywords'),
+    url(r'^tag/new/$', 'tags.views.show_new_keywords'),
+    url(r'^tag/all/$', 'tags.views.show_all_keywords'),
+
+    
+    #url(r'^tag/(?P<keyword>[a-z]+)/$', 'tags.views.show_tagged_articles'),
 
 
     url(r'^forum/(?P<forum_id>[1-9])/$', 'forums.views.show_list'),

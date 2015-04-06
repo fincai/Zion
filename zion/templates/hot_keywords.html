@@ -1,0 +1,134 @@
+{% extends 'nav.html' %}
+{% block page_header %}
+<div class="user-profile user-profile-top">
+  <div class="page-header header-primary user-profile-header">
+    <div class="container">
+      <div class="header-row">
+      
+      
+      
+      
+      
+        <div class="header-side">
+          <h1>Creative Writing by tag
+          </h1>
+          <h1>
+          <small class="post-score post-score-upvotes"> 
+          Explore articles that interest you by keywords
+          </small>
+          </h1>
+          <ul class="nav nav-tabs header-tabs">
+            
+            <li class="active">
+              <a href="/user/{{ profile_user.id }}/">Hot</a>
+            </li>
+            
+            <li>
+              <a href="/user/{{ profile_user.id }}/follows/">New</a>
+            </li>
+            
+            <li>
+              <a href="/user/{{ profile_user.id }}/followers/">All</a>
+            </li>
+            
+        
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
+
+
+
+{% block content %}
+<div class="stat-header">
+  <div class="help-text">
+  </div>
+  <div id="user-graph"></div>
+  <h2></h2>
+</div>
+
+
+<div class="">
+  
+  <div style="float:left;">
+    <br>
+    {% for tag in taglist1 %}
+     <a class="label label-important" href="/tag/">{{ tag.keyword }}</a><span style="font-weight:bold">&nbsp({{ tag.article_count }})</span><br>
+    {% endfor %}
+    </div>
+    
+    <div style="float: left; margin-left: 80px;">
+    <br>
+    {% for tag in taglist2 %}
+     <a class="label label-success" href="/tag/">{{ tag.keyword }}</a><span style="font-weight:bold">&nbsp({{ tag.article_count }})</span><br>
+    {% endfor %}
+    </div>
+    
+    <div style="float: left; margin-left: 80px">
+    <br>
+    {% for tag in taglist3 %}
+     <a class="label label-info" href="/tag/">{{ tag.keyword }}</a><span style="font-weight:bold">&nbsp({{ tag.article_count }})</span><br>
+    {% endfor %}
+    </div>
+    
+    <div style="float: left; margin-left: 80px">
+    <br>
+    {% for tag in taglist4 %}
+     <a class="label" href="/tag/">{{ tag.keyword }}</a><span style="font-weight:bold">&nbsp({{ tag.article_count }})</span><br>
+    {% endfor %}
+    </div>
+    
+    <div style="float: left; margin-left: 80px">
+    <br>
+    {% for tag in taglist5 %}
+     <a class="pagination label" href="/tag/">{{ tag.keyword }}</a><span style="font-weight:bold">&nbsp({{ tag.article_count }})</span><br>
+    {% endfor %}
+    </div>
+  
+  
+</div>
+
+{% endblock %}
+
+{% block forumcss %}  
+
+    <script src="/static/cranefly/js/d3.min.js"></script>
+    <script type="text/javascript">
+      var data = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+      
+      var max = 0;
+      
+
+      var barWidth = 8;
+      var width = (barWidth + 2) * data.length;
+      var height = 40;
+
+      // add the canvas to the DOM
+      var barDemo = d3.select("#user-graph")
+        .append("svg")
+        .attr("width", "100%")
+        .attr("height", 40)
+        .attr("preserveAspectRatio", 'none')
+        .attr("viewBox", "0 0 " + width + " " + height);
+
+      barDemo.selectAll("rect")
+        .data(data)
+        .enter()
+        .append("rect")
+        .attr("shape-rendering", 'crispEdges')
+        .attr("x", function(datum, index) { return (2 + barWidth) * index; })
+        .attr("y", function(datum) { return height - ((datum / max) * height) - 2; })
+        .attr("height", function(datum) { return ((datum / max) * (height)) + 2; })
+        .attr("width", barWidth)
+        .attr("fill", "#DDD");
+
+    </script>
+
+{% endblock %}
+
+
+
