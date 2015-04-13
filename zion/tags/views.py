@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from zion.tags.models import Tag
+from zion.forums.views import to_pages
+
 
 def show_hot_keywords(request):
     
@@ -32,3 +34,40 @@ def show_new_keywords(request):
 
 def show_all_keywords(reqeust):
     pass
+
+
+
+def page_display(keyword, page):
+    if page < 1:
+        raise Http404
+    tag = Tag.objects.get(keyword=keyword)
+    tagged_articles = tag.articles.all()
+    article_count = tagged_articles.count()
+    page_count = to_pages(article_count) 
+    
+    start = 20 * (page - 1)
+    curr_list = tagged_articles[start:start+20]
+    return {'count': page_count, 'curr':curr_list, 'article_count':article_count}
+
+
+def show_tagged_articles(request, keyword, page=1):
+    try:
+	    page = int(page)
+    except ValueError:
+        raise Http404
+
+
+    pages = page_display(keyword, page)
+
+    return render(request, 
+                  'keyword_articles.html',
+                  { 'user':request.user,
+                    'keyword': keyword,
+                    'article_count': pages['article_count'],
+                    'page':page,
+                    'prev_page':page - 1,
+                    'next_page':page + 1,
+                    'page_count':pages['count'],
+                    'curr_list':pages['curr'],
+                  })
+

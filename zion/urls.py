@@ -21,7 +21,8 @@ urlpatterns = patterns('zion',
     url(r'^tag/all/$', 'tags.views.show_all_keywords'),
 
     
-    #url(r'^tag/(?P<keyword>[a-z]+)/$', 'tags.views.show_tagged_articles'),
+    url(r'^tag/(?P<keyword>[a-z]+)/$', 'tags.views.show_tagged_articles'),
+    url(r'^tag/page/(?P<keyword>[a-z]+)/(?P<page>\d+)/$', 'tags.views.show_tagged_articles'),
 
 
     url(r'^forum/(?P<forum_id>[1-9])/$', 'forums.views.show_list'),

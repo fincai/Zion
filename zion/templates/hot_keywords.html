@@ -57,35 +57,35 @@
   <div style="float:left;">
     <br>
     {% for tag in taglist1 %}
-     <a class="label label-important" href="/tag/">{{ tag.keyword }}</a><span style="font-weight:bold">&nbsp({{ tag.article_count }})</span><br>
+     <a class="label label-important" href="/tag/{{ tag.keyword }}/">{{ tag.keyword }}</a><span style="font-weight:bold">&nbsp({{ tag.article_count }})</span><br>
     {% endfor %}
     </div>
     
     <div style="float: left; margin-left: 80px;">
     <br>
     {% for tag in taglist2 %}
-     <a class="label label-success" href="/tag/">{{ tag.keyword }}</a><span style="font-weight:bold">&nbsp({{ tag.article_count }})</span><br>
+     <a class="label label-success" href="/tag/{{ tag.keyword }}/">{{ tag.keyword }}</a><span style="font-weight:bold">&nbsp({{ tag.article_count }})</span><br>
     {% endfor %}
     </div>
     
     <div style="float: left; margin-left: 80px">
     <br>
     {% for tag in taglist3 %}
-     <a class="label label-info" href="/tag/">{{ tag.keyword }}</a><span style="font-weight:bold">&nbsp({{ tag.article_count }})</span><br>
+     <a class="label label-info" href="/tag/{{ tag.keyword }}/">{{ tag.keyword }}</a><span style="font-weight:bold">&nbsp({{ tag.article_count }})</span><br>
     {% endfor %}
     </div>
     
     <div style="float: left; margin-left: 80px">
     <br>
     {% for tag in taglist4 %}
-     <a class="label" href="/tag/">{{ tag.keyword }}</a><span style="font-weight:bold">&nbsp({{ tag.article_count }})</span><br>
+     <a class="label" href="/tag/{{ tag.keyword }}/">{{ tag.keyword }}</a><span style="font-weight:bold">&nbsp({{ tag.article_count }})</span><br>
     {% endfor %}
     </div>
     
     <div style="float: left; margin-left: 80px">
     <br>
     {% for tag in taglist5 %}
-     <a class="pagination label" href="/tag/">{{ tag.keyword }}</a><span style="font-weight:bold">&nbsp({{ tag.article_count }})</span><br>
+     <a class="pagination label" href="/tag/{{ tag.keyword }}/">{{ tag.keyword }}</a><span style="font-weight:bold">&nbsp({{ tag.article_count }})</span><br>
     {% endfor %}
     </div>
   
