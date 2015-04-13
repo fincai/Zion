@@ -15,7 +15,8 @@ class Article(models.Model):
     comments = models.PositiveIntegerField(default=0)
     closed = models.BooleanField(default=False)
     deleted = models.BooleanField(default=False)
-    agreed_users = models.ManyToManyField(User, related_name='agreed_users')
+    agreed_users = models.ManyToManyField(User, related_name='posted_articles')
+    collected_users = models.ManyToManyField(User, related_name='collected_articles')
     last_commentator = models.ForeignKey(User, related_name="last_commentator", null=True)
 
     class Meta:

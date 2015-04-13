@@ -30,6 +30,7 @@ urlpatterns = patterns('zion',
 
     url(r'^forum/(?P<forum_id>[1-9])/new_post/$', 'articles.views.new_post'),
     url(r'^forum/(?P<forum_id>[1-9])/article/(?P<article_id>\d+)/$', 'articles.views.article_detailview'),
+    url(r'^forum/(?P<forum_id>[1-9])/article/(?P<article_id>\d+)/collect/$', 'articles.views.collect'),
     url(r'^forum/(?P<forum_id>[1-9])/article/(?P<article_id>\d+)/page/(?P<page>\d+)/$', 
          'articles.views.article_detailview'),
 
@@ -42,6 +43,7 @@ urlpatterns = patterns('zion',
     #url(r'^user/(?P<user_id>\d+)/comments/$', 'profiles.views.show_comments'),
     url(r'^user/(?P<user_id>\d+)/follows/$', 'profiles.views.show_follows'),
     url(r'^user/(?P<user_id>\d+)/followers/$', 'profiles.views.show_followers'),
+    url(r'^user/(?P<user_id>\d+)/collections/$', 'profiles.views.show_collections'),
 
     url(r'^user/(?P<user_id>\d+)/follow/$', 'profiles.views.follow_action'),
 

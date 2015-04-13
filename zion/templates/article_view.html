@@ -99,9 +99,19 @@
 
    
     
-    
-    <form action="" class="form-inline pull-right" method="get"><input type="hidden" ><input type="hidden" name="retreat"><button type="submit" class="btn btn-icon tooltip-top" ><i class="icon-bookmark"></i></button></form>
-    <form action="" class="form-inline pull-right" method="get"><input type="hidden" ><input type="hidden" name="retreat"><button type="submit" class="btn btn-icon tooltip-top"><i class="icon-envelope"></i></button></form>
+{% if user.is_authenticated %}
+    <form action="/forum/{{ forum.id }}/article/{{ article.id }}/collect/" class="form-inline pull-right" method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-icon tooltip-top" >
+   	 	{% if been_collected %}
+    		<i class="icon-bookmark"></i>
+    	{% else %}
+    		<i class="icon-bookmark-empty"></i>
+    	{% endif %}
+    </button>
+    </form>
+{% endif %}
+
     
   </div>
 
@@ -130,7 +140,6 @@
             <span class="separator">&ndash;</span>
             <a href="/thread/misago-forums-are-now-hosted-on-digitalocean-346/find-1054/" class="post-date">{{ comment.post_date }}</a>
             <span class="separator">&ndash;</span>
-            <span class="post-changelog">One edit</span>
         
             <a href="/thread/misago-forums-are-now-hosted-on-digitalocean-346/find-1054/" class="post-perma tooltip-left" title="Direct link to this post">#{{ forloop.counter | comment_index:page }}</a>
 
@@ -155,37 +164,6 @@
             
 
           </div>
-          <div class="post-footer"><div class="post-rating-actions">
-              <div class="post-rating">
-                <span class="post-score post-score-upvotes">{{ comment.likes }}</span>
-                <form action="/thread/misago-forums-are-now-hosted-on-digitalocean-346/1054/upvote/" class="form-inline form-upvote" method="post">
-                  <input type="hidden" name="_csrf_token" value="eGrw2LKqd7PeiekF">
-                  <button type="submit" class="btn btn-link post-like">Like</button>
-                </form>
-              </div>
-              <div class="post-rating">
-                <span class="post-score post-score-downvotes">{{ comment.unlikes }}</span>
-                <form action="/thread/misago-forums-are-now-hosted-on-digitalocean-346/1054/downvote/" class="form-inline form-downvote" method="post">
-                  <input type="hidden" name="_csrf_token" value="eGrw2LKqd7PeiekF">
-                  <button type="submit" class="btn btn-link post-hate">Dislike</button>
-                </form>
-                
-              </div>
-              
-            </div>
-            
-            
-            <div class="post-actions">
-              
-              <form action="/thread/misago-forums-are-now-hosted-on-digitalocean-346/1054/report/" class="form-inline form-report" method="post" autocomplete="off">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-link btn-report tooltip-top" title="Bring this post to moderator attention.">Report</button>
-              </form>
-              
-              
-              <a href="/thread/misago-forums-are-now-hosted-on-digitalocean-346/1058/edit/" class="post-edit">Edit</a>
-              <a href="/thread/misago-forums-are-now-hosted-on-digitalocean-346/1054/reply/" class="post-reply">Reply</a>
-            </div></div>
         </div>
       </div>
       
@@ -248,10 +226,7 @@
   <button id="editor-preview" name="full" type="submit" class="btn pull-right">Full Editor</button>
   </div>
   
-<div class="editor-upload">
-  <input type="file" name="new_file">
-  <button name="upload" type="submit" class="btn pull-right">Attach File</button>
-</div>
+
  
 </div>
 

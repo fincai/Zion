@@ -9,12 +9,11 @@
       {% else %}
             <img src="/static/default.png" class="header-avatar">
       {% endif %}
-        
-        
-        
-        
-        
-        
+      
+      
+      
+      
+      
         <div class="header-side">
           <h1>{{ profile_user.username }} 
           {% ifnotequal profile_user.id user.id %}
@@ -30,25 +29,22 @@
           {{ profile_user.signature }}
           </small>
           </h1>
-          
           <ul class="nav nav-tabs header-tabs">
             
             <li>
               <a href="/user/{{ profile_user.id }}/">Articles</a>
             </li>
             
-           
             <li>
               <a href="/user/{{ profile_user.id }}/follows/">Follows</a>
             </li>
             
-            <li class="active">
-              <a href="/user/{{ profile_user.id  }}/followers/">Followers</a>
+            <li>
+              <a href="/user/{{ profile_user.id }}/followers/">Followers</a>
             </li>
             
-            <li>
-            <a href="/user/{{ profile_user.id }}/collections/"><i class="icon-bookmark"></i> Collections</a>
-
+            <li class="active">
+              <a href="/user/{{ profile_user.id }}/collections/"><i class="icon-bookmark"></i> Collections</a>
             </li>
             
           </ul>
@@ -67,24 +63,29 @@
     Graph presents user's posting activity from last 100 days.
   </div>
   <div id="user-graph"></div>
-  <h2>{{ profile_user.username }} has {{ profile_user.follower }} followers</h2>
+  <h2>{{ profile_user.username }} has collected {{ collections_count }} articles</h2>
 </div>
 
 
 <div class="content-list user-posts">
   
-{% for person in followers_list %}
+{% for article in collections_list %}
   <div class="media">
-    <a href="/user/{{ person.id }}/" class="pull-left">
-       {% if person.has_avatar %}
-  	  	<img class="media-object" src="/static/avatars/60_{{ person.avatar_image }}">
-  	   {% else %}
+    <a href="/user/{{ article.author.id }}/" class="pull-left">
+    
+   	  {% if profile_user.has_avatar %}
+  	  <img class="media-object" src="/static/avatars/60_{{ article.author.avatar_image }}">
+      {% else %}
         <img class="media-object" src="/static/default.png">
-       {% endif %}
+      {% endif %}
+    
+    
+    
+      
     </a>
     <div class="media-body">
-      <a href="/user/{{ person.id }}" class="post-preview">{{ person.username }}</a>
-      <div class="media-footer"> {{ person.signature }}</div>
+      <a href="/forum/{{ article.forum.id }}/article/{{ article.id }}/" class="post-preview">{{ article.title }}</a>
+      <div class="media-footer"> Posted in <a href="/forum/{{ article.forum.id }}/">{{ article.forum.name }}</a> {{ article.post_date }}</div>
     </div>
   </div>
   <hr>

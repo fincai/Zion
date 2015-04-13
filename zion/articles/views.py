@@ -82,17 +82,23 @@ def article_detailview(request, forum_id, article_id, page=1, **kwargs):
         is_success = False
 
     
+    article = Article.objects.get(id=article_id)
+    tag_list = article.tag_set.all()
         
 
     been_commented = True 
+    been_collected = True
     if request.user.is_authenticated:
         try:
             Comment.objects.get(poster_id=request.user.id, article_id=pages['article'].id) 
         except Comment.DoesNotExist:
             been_commented = False
+
+        count = article.collected_users.filter(id=request.user.id).count()
+        if count ==  0:   # not yet collected
+            been_collected = False
+            
     
-    article = Article.objects.get(id=article_id)
-    tag_list = article.tag_set.all()
 
     return render(request,
                   'article_view.html',
@@ -108,7 +114,21 @@ def article_detailview(request, forum_id, article_id, page=1, **kwargs):
                     'comment_list':pages['list'],
                     'comment_success':is_success,
                     'been_commented': been_commented,
+                    'been_collected': been_collected,
                   })
+
+def collect(request, forum_id, article_id):
+    if request.method == 'POST':
+        article = Article.objects.get(id=article_id)
+        count = article.collected_users.filter(id=request.user.id).count()
+        if count ==  0:   # not yet collected
+            request.user.collected_articles.add(article) 
+        else:
+            request.user.collected_articles.remove(article)
+        return HttpResponseRedirect('/forum/{0}/article/{1}'.format(forum_id, article_id))
+    else:
+        raise Http404
+
 
 @ajax
 @csrf_exempt

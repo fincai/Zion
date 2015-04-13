@@ -10,7 +10,8 @@ def show_articles(request, user_id):
     except User.DoesNotExist:
         raise Http404
 
-    article_list = Article.objects.filter(author_id=user_id).all()
+    #article_list = Article.objects.filter(author_id=user_id).all()
+    article_list = user.posted_articles.all()
     
 
     is_following = True
@@ -72,6 +73,33 @@ def show_followers(request, user_id):
                    'followers_list':followers_list,
                   })
 
+
+def show_collections(request, user_id):
+    try:
+        user = User.objects.get(id=user_id)
+    except User.DoesNotExist:
+        raise Http404
+
+    collections_list = user.collected_articles.all()
+    collections_count = len(collections_list)
+
+    
+    is_following = True
+    count = user.fans_set.filter(id=request.user.id).count()
+    if count == 0:
+        is_following = False
+    
+    
+    return render(request, 
+                  'user_collections.html',
+                  {'user':request.user,
+                   'profile_user':user,
+                   'is_following':is_following,
+                   'collections_list':collections_list,
+                   'collections_count':collections_count,
+                  })
+
+                  
 @ajax
 def follow_action(request, user_id):
     if request.user.is_authenticated and request.method == 'POST' and request.user.id != user_id:
