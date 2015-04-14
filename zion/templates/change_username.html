@@ -1,0 +1,59 @@
+{% extends 'nav.html' %}
+{% block content %}
+<div class="row usercp">
+  <div class="span3">
+
+    <ul class="nav nav-pills usercp-tabs">
+      <li class="nav-header">Your Control Panel</li>
+      
+      
+      <li><a href="/user/chavatar/">Change Avatar</a></li>
+      <li><a href="/user/chemail/">Change E-mail</a></li>
+      <li><a href="/user/chpwd/">Change Password</a></li>
+      
+      <li  class="active"><a href="/user/chname/">Change Username</a></li>
+      
+      <li><a href="/user/chsign/">Change Signature</a></li>
+      
+    </ul>
+
+  </div>
+  <div class="span9 usercp-action">
+
+    
+<div class="form-container">
+  
+
+  <div class="media usercp-avatar-menu">
+ 
+    <div >
+      <div class="form-header">
+        <h1>Change Username</h1>
+      </div>
+       <form action="" method="post">
+        
+        <div class="form-fields">
+          {% csrf_token %}
+            <div  class="controls">
+                <label class="control-label" for="id_username">Username:</label>
+                <div class="controls">
+                    <input id="id_username" name="username" class="span8" type="text" maxlength="255" value="{{ user.username }}">                    
+                </div>
+           </div>
+        
+      
+         
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">Save Signature</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</div>
+
+
+  </div>
+</div>
+{% endblock %}

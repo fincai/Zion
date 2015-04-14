@@ -50,5 +50,8 @@ urlpatterns = patterns('zion',
     url(r'^user/chavatar/$', 'avatar.views.change_avatar'),
     url(r'^user/chavatar/upload/$', 'avatar.views.upload'),
     url(r'^user/chavatar/upload/crop/$', 'avatar.views.crop'),
+    
+    url(r'^user/chsign/$', 'signin.views.change_signature'),
+    url(r'^user/chname/$', 'signin.views.change_username'),
 
 )
