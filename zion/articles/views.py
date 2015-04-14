@@ -39,7 +39,7 @@ def new_post(request, forum_id):
             for kw in keywords:
                 if kw != '':
                     if Tag.objects.filter(keyword=kw).count() == 0:
-                        tag = Tag.objects.create(keyword=kw, article_count=1);
+                        tag = Tag.objects.create(keyword=kw, article_count=1, proposed_date=article.post_date);
                         tag.articles.add(article)
                     else:
                         tag = Tag.objects.get(keyword=kw)
