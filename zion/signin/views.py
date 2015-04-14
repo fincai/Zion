@@ -39,7 +39,7 @@ def change_signature(request):
                   'change_signature.html',
                   { 'user':request.user,
                 })
-
+@login_required
 def change_username(request):
     if request.method == 'POST':
         User.objects.filter(id=request.user.id).update(username=request.POST['username'])
@@ -49,3 +49,23 @@ def change_username(request):
                   'change_username.html',
                   { 'user':request.user,
                 })
+
+def show_users(request):
+    users_list = User.objects.order_by('-follower').all()
+    users_count = len(users_list)
+    return render(request, 
+                  'browse_users.html',
+                  {'user':request.user,
+                   'users_list':users_list,
+                   'users_count':users_count,
+                  })
+
+def show_all_users(request):
+    users_list = User.objects.order_by('username').all()
+    users_count = len(users_list)
+    return render(request, 
+                  'all_users.html',
+                  {'user':request.user,
+                   'users_list':users_list,
+                   'users_count':users_count,
+                  })

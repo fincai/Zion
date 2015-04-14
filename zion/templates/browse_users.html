@@ -1,0 +1,81 @@
+{% extends 'nav.html' %}
+{% block page_header %}
+<div class="user-profile user-profile-top">
+  <div class="page-header header-primary user-profile-header">
+    <div class="container">
+      <div class="header-row">
+        
+        
+         <div class="header-side">
+          <h1> 
+          Browse Users
+          </h1>
+          <h1>
+          <small class="post-score post-score-upvotes"> 
+          There are {{ users_count }} users on this site.
+          </small>
+          </h1>
+        
+        
+          <ul class="nav nav-tabs header-tabs">
+            
+            
+           
+            
+            <li class="active">
+              <a href="/browseusers/">Popular</a>
+            </li>
+            
+            <li>
+              <a href="/browseusers/all/">All</a>
+            </li>
+            
+    
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
+
+
+
+{% block content %}
+<div class="stat-header">
+  
+
+</div>
+
+
+<div class="content-list user-posts">
+  
+{% for person in users_list %}
+  <div class="media">
+    <a href="/user/{{ person.id }}/" class="pull-left">
+       {% if person.has_avatar %}
+  	  	<img class="media-object" src="/static/avatars/60_{{ person.avatar_image }}">
+  	   {% else %}
+        <img class="media-object" src="/static/default.png">
+       {% endif %}
+    </a>
+    <div class="media-body">
+      <a href="/user/{{ person.id }}" class="post-preview">{{ person.username }}</a>
+     <div class="pull-right"> <i class="icon-comment"> </i> &nbsp&nbsp<a> {{ person.articles }} articles</a></div>
+     <div class="pull-right">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div>
+      <div class="pull-right"> <i class="icon-user"> </i> &nbsp&nbsp<a> {{ person.follower }} followers</a></div>
+      <div class="media-footer"> {{ person.signature }}</div>
+    </div>
+  </div>
+  <hr>
+{% endfor %}
+  
+  
+</div>
+
+{% endblock %}
+
+
+
+
