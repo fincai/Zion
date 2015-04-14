@@ -25,8 +25,11 @@ urlpatterns = patterns('zion',
     url(r'^browseusers/all/$', 'signin.views.show_all_users'),
 
     
+    url(r'^rules/$', 'views.show_rules'),
+    
     url(r'^tag/(?P<keyword>[a-z]+)/$', 'tags.views.show_tagged_articles'),
     url(r'^tag/page/(?P<keyword>[a-z]+)/(?P<page>\d+)/$', 'tags.views.show_tagged_articles'),
+
 
 
     url(r'^forum/(?P<forum_id>[1-9])/$', 'forums.views.show_list'),

@@ -25,6 +25,10 @@ def index(request):
 
                 })
 
+def show_rules(request):
+    return render(request, 'forum_rules.html');
+    
+
 def signout(request):
     if request.method == 'POST':
         auth.logout(request) 
