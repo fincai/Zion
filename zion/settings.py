@@ -68,9 +68,9 @@ WSGI_APPLICATION = 'zion.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'zion',
-        'USER': 'root',
+        'USER': 'Farley',
         'PASSWORD': '014216',
     }
 }
