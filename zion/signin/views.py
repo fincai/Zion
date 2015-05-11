@@ -41,13 +41,19 @@ def change_signature(request):
                 })
 @login_required
 def change_username(request):
+    error_msg = ''
     if request.method == 'POST':
-        User.objects.filter(id=request.user.id).update(username=request.POST['username'])
-        return HttpResponseRedirect('/user/chname/')
+        try:
+            User.objects.get(username=request.POST['username'])
+            error_msg = 'The username has already been used!'
+        except User.DoesNotExist:
+            User.objects.filter(id=request.user.id).update(username=request.POST['username'])
+            return HttpResponseRedirect('/user/chname/')
 
     return render(request,
                   'change_username.html',
                   { 'user':request.user,
+                    'error':error_msg,
                 })
 
 def show_users(request):
