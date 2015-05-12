@@ -59,18 +59,18 @@ def change_username(request):
 @login_required
 def change_email(request):
     if request.method == 'POST':
-    	form = ChangeEmailForm(request.POST)
-		if form.is_valid():
-			cd = form.clean_data
-			User.objects.filter(id=request.user.id).update(email=request.POST['email'])
+        form = ChangeEmailForm(request.POST)
+        if form.is_valid():
+            cd = form.clean_data
+            User.objects.filter(id=request.user.id).update(email=request.POST['email'])
             return HttpResponseRedirect('/user/chemail/')
-	else:
+    else:
         form = ChangeEmailForm()
 
     return render(request,
-                  'change_email.html',
-                  { 'user':request.user,
-                  	'form':form,
+                    'change_email.html',
+                    { 'user':request.user,
+                      'form':form,
                 })
 
 def show_users(request):
