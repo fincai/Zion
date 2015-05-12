@@ -61,7 +61,7 @@ def change_email(request):
     if request.method == 'POST':
         form = ChangeEmailForm(request.POST)
         if form.is_valid():
-            cd = form.clean_data
+            cd = form.cleaned_data
             User.objects.filter(id=request.user.id).update(email=request.POST['email'])
             return HttpResponseRedirect('/user/chemail/')
     else:
