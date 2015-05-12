@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, HttpResponse
-from zion.signin.forms import SignInForm
+from zion.signin.forms import SignInForm, ChangeEmailForm
 from zion.signin.models import User
 from django.contrib import auth
 from django.forms.util import ErrorList
@@ -54,6 +54,23 @@ def change_username(request):
                   'change_username.html',
                   { 'user':request.user,
                     'error':error_msg,
+                })
+                
+@login_required
+def change_email(request):
+    if request.method == 'POST':
+    	form = ChangeEmailForm(request.POST)
+		if form.is_valid():
+			cd = form.clean_data
+			User.objects.filter(id=request.user.id).update(email=request.POST['email'])
+            return HttpResponseRedirect('/user/chemail/')
+	else:
+        form = ChangeEmailForm()
+
+    return render(request,
+                  'change_email.html',
+                  { 'user':request.user,
+                  	'form':form,
                 })
 
 def show_users(request):

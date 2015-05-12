@@ -8,5 +8,8 @@ class SignInForm(forms.Form):
                 help_text='Sign me in automatically next time', required=False)
 
 
-            
+class ChangeEmailForm(forms.Form):
+	email = forms.EmailField(label='E-mail address', 
+                             help_text="Working e-mail inbox is required to maintain control over your forum account.",
+                             max_length=255)
 

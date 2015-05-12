@@ -60,5 +60,7 @@ urlpatterns = patterns('zion',
     
     url(r'^user/chsign/$', 'signin.views.change_signature'),
     url(r'^user/chname/$', 'signin.views.change_username'),
+    url(r'^user/chemail/$', 'signin.views.change_email'),
+    #url(r'^user/chpwd/$', 'signin.views.change_password'),
 
 )
