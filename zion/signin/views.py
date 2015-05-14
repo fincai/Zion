@@ -95,7 +95,7 @@ def change_password(request):
         form = ChangePasswordForm()
 
     return render(request,
-                    'change_email.html',
+                    'change_password.html',
                     { 'user':request.user,
                       'form':form,
                       'reset_result': reset_result,
