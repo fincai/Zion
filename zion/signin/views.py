@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, HttpResponse
-from zion.signin.forms import SignInForm, ChangeEmailForm
+from zion.signin.forms import SignInForm, ChangeEmailForm, ChangePasswordForm
 from zion.signin.models import User
 from django.contrib import auth
 from django.forms.util import ErrorList
@@ -77,6 +77,28 @@ def change_email(request):
                     { 'user':request.user,
                       'form':form,
                       'duplicate_error': error_msg,
+                })
+
+@login_required
+def change_password(request):
+    reset_result = ''
+    if request.method == 'POST':
+        form = ChangePasswordForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            if request.user.password == request.POST['password']:
+                reset_result = 'The new password cannot be the same as the old one'
+            else:
+                User.objects.filter(id=request.user.id).update(password=request.POST['password'])
+                reset_result = 'Password has been reset successfully.'
+    else:
+        form = ChangePasswordForm()
+
+    return render(request,
+                    'change_email.html',
+                    { 'user':request.user,
+                      'form':form,
+                      'reset_result': reset_result,
                 })
 
 def show_users(request):

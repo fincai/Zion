@@ -13,3 +13,17 @@ class ChangeEmailForm(forms.Form):
                              help_text="Working e-mail inbox is required to maintain control over your forum account.",
                              max_length=255)
 
+
+class ChangePasswordForm(forms.Form):
+    password = forms.CharField(label='Password',
+                               help_text="Password you will be using to sign in to your account. Make sure it's strong.",
+                               max_length=255, widget=forms.PasswordInput)
+    password_rep = forms.CharField(max_length=255, widget=forms.PasswordInput)
+    
+
+
+    def clean_password_rep(self):
+        if 'password' in self.cleaned_data:
+            if self.cleaned_data['password'] != self.cleaned_data['password_rep']:
+                raise forms.ValidationError('Entered passwords do not match.')
+        return self.cleaned_data['password_rep']
