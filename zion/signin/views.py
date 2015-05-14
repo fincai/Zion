@@ -58,12 +58,17 @@ def change_username(request):
                 
 @login_required
 def change_email(request):
+    error_msg = ''
     if request.method == 'POST':
         form = ChangeEmailForm(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
-            User.objects.filter(id=request.user.id).update(email=request.POST['email'])
-            return HttpResponseRedirect('/user/chemail/')
+            try:
+                User.objects.get(email=request.POST['email'])
+                error_msg = 'The email has already been registered!'
+            except User.DoesNotExist:
+                User.objects.filter(id=request.user.id).update(email=request.POST['email'])
+                return HttpResponseRedirect('/user/chemail/')
     else:
         form = ChangeEmailForm()
 
@@ -71,6 +76,7 @@ def change_email(request):
                     'change_email.html',
                     { 'user':request.user,
                       'form':form,
+                      'duplicate_error': error_msg,
                 })
 
 def show_users(request):

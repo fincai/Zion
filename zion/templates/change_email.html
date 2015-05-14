@@ -43,6 +43,7 @@
                 {% for error in form.email.errors %}
                 		<p class="help-block" style="font-weight:bold; color:red">{{ error }}</p>
                 {% endfor %}
+                <p class="help-block" style="font-weight:bold; color:red">{{ duplicate_error }}</p>
                 <p class="help-block">{{ form.email.help_text }}</p>
            </div>
         
