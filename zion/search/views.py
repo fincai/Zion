@@ -41,7 +41,7 @@ def search(request, page=1):
 			page = int(page)
 		except ValueError:
 			raise Http404
-			
+
         form = SearchFormSimple(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
@@ -63,7 +63,7 @@ def search(request, page=1):
         else:
             form = SearchFormSimple()
     		
-    return render(request,
+        return render(request,
                 'search_articles.html',
                 { 'user':request.user,
                   'form':form,
@@ -73,3 +73,5 @@ def search(request, page=1):
                   'page_count':pages_count,
                   'found_articles': curr_list,
                 })
+    else:
+        raise Http404
