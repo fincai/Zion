@@ -69,6 +69,6 @@ def search(request, page=1):
                   'page':page,
                   'prev_page':page - 1,
                   'next_page':page + 1,
-                  'page_count':pages_count,
+                  'page_count':page_count,
                   'found_articles': curr_list,
                 })
