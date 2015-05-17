@@ -61,15 +61,13 @@ def search(request, page=1):
             start = 20 * (page - 1)
             curr_list = found_articles[start:start+20]
     		
-        return render(request,
-                    'search_articles.html',
-                    { 'user':request.user,
-                      'form':form,
-                      'page':page,
-                   	  'prev_page':page - 1,
-                   	  'next_page':page + 1,
-                      'page_count':pages_count,
-                      'found_articles': curr_list,
-                     })
-    else:
-        raise Http404
+    return render(request,
+                'search_articles.html',
+                { 'user':request.user,
+                  'form':form,
+                  'page':page,
+                  'prev_page':page - 1,
+                  'next_page':page + 1,
+                  'page_count':pages_count,
+                  'found_articles': curr_list,
+                })
