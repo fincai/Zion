@@ -33,10 +33,7 @@ def get_query(query_string, search_fields):
             
                 
 def search(request, page=1):
-    if page < 1:
-        raise Http404
-
-	if request.method == 'POST':
+	if request.method != 'POST':
 		try:
 			page = int(page)
 		except ValueError:
@@ -61,9 +58,9 @@ def search(request, page=1):
             start = 20 * (page - 1)
             curr_list = found_articles[start:start+20]
         else:
-            form = SearchFormSimple()
+        	form = SearchFormSimple()
     		
-        return render(request,
+    	return render(request,
                 'search_articles.html',
                 { 'user':request.user,
                   'form':form,
@@ -73,4 +70,5 @@ def search(request, page=1):
                   'page_count':pages_count,
                   'found_articles': curr_list,
                 })
-    return HttpResponseRedirect('/')
+	else:
+		raise Http404
