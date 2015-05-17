@@ -8,8 +8,8 @@ class SearchFormSimple(Form):
                                     max_length=255,
                                     required=False)
                                     
-	def clean_search_query(self):
-		data = self.cleaned_data['search_query']
+    def clean_search_query(self):
+        data = self.cleaned_data['search_query']
         if len(data) < 3:
             raise forms.ValidationError(_("Search Query string should contain at least 3 characters."))
         return data
