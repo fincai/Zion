@@ -33,13 +33,14 @@ def get_query(query_string, search_fields):
             
                 
 def search(request, page=1):
+    if page < 1:
+        raise Http404
+
 	if request.method == 'POST':
 		try:
 			page = int(page)
 		except ValueError:
 			raise Http404
-		if page < 1:
-        	raise Http404
 			
         form = SearchFormSimple(request.POST)
         if form.is_valid():
