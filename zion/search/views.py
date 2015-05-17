@@ -33,9 +33,9 @@ def get_query(query_string, search_fields):
             
                 
 def search(request, page=1):
-	try:
-		page = int(page)
-	except ValueError:
+    try:
+        page = int(page)
+    except ValueError:
 		raise Http404
 
     form = SearchFormSimple(request.POST)
