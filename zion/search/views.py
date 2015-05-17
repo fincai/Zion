@@ -33,34 +33,36 @@ def get_query(query_string, search_fields):
             
                 
 def search(request, page=1):
-	if request.method != 'POST':
-		try:
-			page = int(page)
-		except ValueError:
-			raise Http404
+	try:
+		page = int(page)
+	except ValueError:
+		raise Http404
 
-        form = SearchFormSimple(request.POST)
-        if form.is_valid():
-            cd = form.cleaned_data
-            found_articles = None
-            query_string = cd['search_query']
-            if cd['search_author']:
-                search_fields = ['author', 'title', 'text']
-            elif cd['search_in_titles'] == True:
-                search_fields = ['title']
-            else:
-                search_fields = ['title', 'text']
+    form = SearchFormSimple(request.POST)
+    found_articles = None
+    curr_list = None
+    page_count = 1
 
-            entry_query = get_query(query_string, search_fields)
-            found_articles = Article.objects.filter(entry_query).order_by('-post_date')
-
-            page_count = to_pages(found_articles.count()) 
-            start = 20 * (page - 1)
-            curr_list = found_articles[start:start+20]
+    if form.is_valid():
+        cd = form.cleaned_data
+        query_string = cd['search_query']
+        if cd['search_author']:
+            search_fields = ['author', 'title', 'text']
+        elif cd['search_in_titles'] == True:
+            search_fields = ['title']
         else:
-        	form = SearchFormSimple()
+            search_fields = ['title', 'text']
+
+        entry_query = get_query(query_string, search_fields)
+        found_articles = Article.objects.filter(entry_query).order_by('-post_date')
+
+        page_count = to_pages(found_articles.count()) 
+        start = 20 * (page - 1)
+        curr_list = found_articles[start:start+20]
+    else:
+        form = SearchFormSimple()
     		
-    	return render(request,
+    return render(request,
                 'search_articles.html',
                 { 'user':request.user,
                   'form':form,
@@ -70,5 +72,3 @@ def search(request, page=1):
                   'page_count':pages_count,
                   'found_articles': curr_list,
                 })
-	else:
-		raise Http404
