@@ -73,5 +73,3 @@ def search(request, page=1):
                   'page_count':pages_count,
                   'found_articles': curr_list,
                 })
-    else:
-        raise Http404
