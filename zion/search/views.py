@@ -1,6 +1,6 @@
 import re
 from django.shortcuts import render
-from django.http import Http404
+from django.http import Http404, HttpResponseRedirect
 from zion.search.forms import SearchFormSimple
 from django.db.models import Q
 from zion.articles.models import Article
@@ -73,3 +73,4 @@ def search(request, page=1):
                   'page_count':pages_count,
                   'found_articles': curr_list,
                 })
+    return HttpResponseRedirect('/')
