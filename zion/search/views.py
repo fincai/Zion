@@ -51,7 +51,7 @@ def search(request, page=1):
         elif cd['search_in_titles'] == True:
             search_fields = ['title']
         else:
-            search_fields = ['title', 'text']
+        search_fields = ['title', 'text']
 
         entry_query = get_query(query_string, search_fields)
         found_articles = Article.objects.filter(entry_query).order_by('-post_date')
