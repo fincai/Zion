@@ -13,6 +13,9 @@ urlpatterns = patterns('zion',
     url(r'^signin/$', 'signin.views.form'),
     url(r'^signout/$', 'views.signout'),
 
+    url(r'^search/$', 'search.views.search'),
+    url(r'^search/page/(?P<page>\d+)/$', 'search.views.search'),
+    
     url(r'^popular/$', 'popular.views.popular_list'),
     url(r'^popular/page/(?P<page>\d+)/$', 'popular.views.popular_list'),
 

@@ -64,10 +64,10 @@ def change_email(request):
         if form.is_valid():
             cd = form.cleaned_data
             try:
-                User.objects.get(email=request.POST['email'])
+                User.objects.get(email=cd['email'])
                 error_msg = 'The email has already been registered!'
             except User.DoesNotExist:
-                User.objects.filter(id=request.user.id).update(email=request.POST['email'])
+                User.objects.filter(id=request.user.id).update(email=cd['email'])
                 return HttpResponseRedirect('/user/chemail/')
     else:
         form = ChangeEmailForm()
@@ -86,10 +86,10 @@ def change_password(request):
         form = ChangePasswordForm(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
-            if request.user.password == request.POST['password']:
+            if request.user.password == cd['password']:
                 reset_result = 'The new password cannot be the same as the old one'
             else:
-                User.objects.filter(id=request.user.id).update(password=request.POST['password'])
+                User.objects.filter(id=request.user.id).update(password=cd['password'])
                 reset_result = 'Password has been reset successfully.'
     else:
         form = ChangePasswordForm()
