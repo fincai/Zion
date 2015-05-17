@@ -1,6 +1,6 @@
 from django import forms
 
-class SearchFormSimple(Form):
+class SearchFormSimple(forms.Form):
     search_query = forms.CharField(label=_("Search Phrases"), max_length=255)
     search_in_titles = forms.BooleanField(label=_("Limit Search in Titles"), required=False)
     search_author = forms.CharField(label=_("Author Name"),
