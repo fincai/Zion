@@ -60,6 +60,8 @@ def search(request, page=1):
             page_count = to_pages(found_articles.count()) 
             start = 20 * (page - 1)
             curr_list = found_articles[start:start+20]
+        else:
+            form = SearchFormSimple()
     		
     return render(request,
                 'search_articles.html',
